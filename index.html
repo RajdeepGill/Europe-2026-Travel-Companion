@@ -99,6 +99,10 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 @media(prefers-color-scheme:dark){.status-planned{color:#c98fef}.status-food{color:#f0a668}}
 .area-day-tag{display:inline-flex;align-items:center;font-size:10.5px;font-weight:850;padding:3px 9px;border-radius:999px;background:rgba(47,111,237,.1);color:var(--accent);margin-left:8px;vertical-align:middle;white-space:nowrap}
 .city-heading{font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:22px 4px 8px}.city-heading:first-child{margin-top:4px}
+.qa-group-label{font-size:10.5px;font-weight:850;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:14px 2px 8px}.qa-group-label:first-child{margin-top:0}
+.zone-divider{display:flex;align-items:center;gap:12px;margin:38px 4px 2px}
+.zone-divider .zlabel{font-size:11.5px;font-weight:900;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);white-space:nowrap}
+.zone-divider .zline{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
 .area-list{display:flex;flex-direction:column}
 .area-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}
 .area-item:last-child{border-bottom:0}
@@ -117,7 +121,6 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 .legend-chip{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:750;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--text);cursor:pointer;user-select:none}
 .legend-chip.off{opacity:.4}
 .legend-dot{width:10px;height:10px;border-radius:50%;flex:none}
-.map-jump{margin-bottom:4px}
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card);color:var(--text)}
 .leaflet-container{background:var(--bg);font-family:inherit}
 .leaflet-popup-content{margin:12px 14px}
@@ -191,22 +194,27 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 </div>
 
 <h2 class="section-title">⚡ Quick Access</h2>
+<div class="small" style="margin:0 4px 4px">Map, Explore, Schedule and Essentials are always one tap away in the bottom bar — everything else is here.</div>
+<div class="qa-group-label">Live tools</div>
 <div class="quick">
 <a class="tile" href="#clocks"><span>🕒</span>Time</a>
 <a class="tile" href="#weather"><span>🌤️</span>Weather</a>
+<a class="tile" href="#currency"><span>💱</span>Currency</a>
+</div>
+<div class="qa-group-label">Travel logistics</div>
+<div class="quick">
 <a class="tile" href="#flights"><span>✈️</span>Flights</a>
 <a class="tile" href="#hotels"><span>🏨</span>Hotels</a>
-<a class="tile" href="#schedule"><span>📅</span>Schedule</a>
-<a class="tile" href="#currency"><span>💱</span>Currency</a>
 <a class="tile" href="#baggage"><span>🧳</span>Baggage</a>
+</div>
+<div class="qa-group-label">Reference</div>
+<div class="quick">
 <a class="tile" href="#bookings"><span>🎟️</span>Bookings</a>
-<a class="tile" href="#tripmap"><span>🗺️</span>Trip Map</a>
-<a class="tile" href="#explore"><span>📍</span>Explore</a>
-<a class="tile" href="#essentials"><span>🆘</span>Essentials</a>
 <a class="tile" href="#apps"><span>📱</span>Apps</a>
 <a class="tile" href="#todo"><span>✅</span>To Do</a>
 </div>
 
+<div class="zone-divider"><span class="zlabel">🧭 Live Right Now</span><span class="zline"></span></div>
 <h2 class="section-title" id="clocks">🕒 Local Time</h2>
 <section class="card">
 <div class="clocks" id="clocksGrid"></div>
@@ -235,6 +243,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 <div class="small" id="convMeta">Loading rates…</div>
 </section>
 
+<div class="zone-divider"><span class="zlabel">🧾 Your Bookings</span><span class="zline"></span></div>
 <h2 class="section-title" id="flights">✈️ Verified Flights</h2>
 <details open><summary><span class="brand-badge badge-ac">AC</span><span class="sum-text">Aug 16–17 • Air Canada AC 856 • Toronto → London</span></summary><div class="inside"><div class="flight"><div><div class="code">YYZ</div><div class="small">Terminal 1<br>8:15 PM</div></div><div class="arrow">→</div><div><div class="code">LHR</div><div class="small">Terminal 2<br>8:35 AM +1</div></div></div><div class="small" style="text-align:center;margin-top:10px">Airbus A330-300 • Economy Basic • 7h 20m</div></div></details>
 <details><summary><span class="brand-badge badge-ba">BA</span><span class="sum-text">Aug 24 • British Airways BA 482 • London → Barcelona</span></summary><div class="inside"><div class="flight"><div><div class="code">LHR</div><div class="small">Terminal 5<br>4:15 PM</div></div><div class="arrow">→</div><div><div class="code">BCN</div><div class="small">Terminal 1<br>7:35 PM</div></div></div><div class="small" style="text-align:center;margin-top:10px">Airbus A320neo • Economy Plus • 2h 20m</div></div></details>
@@ -287,6 +296,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 <div class="checkrow"><span>⏸️</span><div><b>Boat experience</b> <span class="status status-optional">Optional</span><div class="small">Revisit later.</div></div></div>
 </section>
 
+<div class="zone-divider"><span class="zlabel">🗺️ Explore</span><span class="zline"></span></div>
 <h2 class="section-title" id="tripmap">🗺️ Trip Map</h2>
 <section class="card">
 <div class="small">Every pin from the Explore list, colour-coded by neighbourhood, plus your hotels and arrival airport. Switch to "Areas only" for a simplified view of just the neighbourhood clusters, tap the legend to show/hide an area, or jump straight to today's area.</div>
@@ -297,10 +307,10 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 <button type="button" data-city="lisbon">🇵🇹 Lisbon</button>
 </div>
 <div class="city-filter" id="mapModeFilter">
-<button type="button" class="active" data-mode="detail">📍 Detail (every pin)</button>
+<button type="button" class="active" data-mode="detail">📍 Detail</button>
 <button type="button" data-mode="areas">🗂️ Areas only</button>
+<button type="button" id="jumpToday">🎯 Today's area</button>
 </div>
-<button type="button" class="btn secondary map-jump" id="jumpToday">📍 Jump to today's area</button>
 <div id="tripMap" class="trip-map"></div>
 <div class="map-legend" id="refLegend">
 <span class="legend-chip" style="cursor:default"><span class="legend-dot" style="background:#122033;width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-size:9px">🏨</span>Hotel</span>
@@ -463,6 +473,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 <div class="area-item"><b>Quinta da Regaleira</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Quinta+da+Regaleira+Sintra">Map</a></div>
 </div></div></details>
 
+<div class="zone-divider"><span class="zlabel">📋 Reference</span><span class="zline"></span></div>
 <h2 class="section-title" id="essentials">🆘 Emergency &amp; Essentials</h2>
 <section class="card">
 <div class="essential-grid">
@@ -498,10 +509,10 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 
 <nav class="nav">
 <a href="#home"><span>🏠</span>Home</a>
-<a href="#weather"><span>🌤️</span>Weather</a>
-<a href="#flights"><span>✈️</span>Flights</a>
+<a href="#tripmap"><span>🗺️</span>Map</a>
+<a href="#explore"><span>📍</span>Explore</a>
 <a href="#schedule"><span>📅</span>Days</a>
-<a href="#baggage"><span>🧳</span>Bags</a>
+<a href="#essentials"><span>🆘</span>SOS</a>
 </nav>
 
 <script src="vendor/leaflet/leaflet.js"></script>

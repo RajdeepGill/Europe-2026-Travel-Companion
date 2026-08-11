@@ -14,19 +14,62 @@
 <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
 <title>Europe 2026 Travel Companion</title>
 <style>
-:root{--bg:#eef3f8;--card:#fff;--text:#122033;--muted:#6a778b;--line:#dfe6ee;--accent:#2f6fed;--green:#0d8a75;--gold:#b88313;--shadow:0 12px 35px rgba(32,48,72,.11);--radius:22px}
-@media(prefers-color-scheme:dark){:root{--bg:#07101f;--card:#111c2e;--text:#eef4ff;--muted:#a7b4c8;--line:#263650;--accent:#75a7ff;--green:#5ee3c3;--gold:#f0c15f;--shadow:none}}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-.wrap{max-width:880px;margin:auto;padding:calc(18px + env(safe-area-inset-top)) 14px calc(105px + env(safe-area-inset-bottom))}
-.hero{padding:18px 6px 8px}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
-h1{font-size:35px;line-height:1.02;margin:8px 0 10px;letter-spacing:-.03em}.sub{font-size:15px;line-height:1.5;color:var(--muted)}
-.skyline{width:100%;height:auto;max-height:80px;margin-top:14px;display:block}
-.section-title{font-size:22px;margin:26px 4px 10px}.card,.tile,details{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-.card{padding:18px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat{padding:15px}.stat span{display:block;color:var(--muted);font-size:12px;font-weight:800}.stat b{font-size:21px}
-.badge{display:inline-block;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900;background:rgba(47,111,237,.11);color:var(--accent)}
-.countdown{font-size:28px;font-weight:900;margin:8px 0 2px}.small{font-size:13px;line-height:1.5;color:var(--muted)}
-.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.quick a{text-decoration:none;color:var(--text);padding:14px 10px;text-align:center;font-weight:850;font-size:12px}.quick span{display:block;font-size:24px;margin-bottom:6px}
-.weather{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.weather-card{padding:14px}.weather-temp{font-size:25px;font-weight:900;margin:5px 0}
+:root{
+--bg:#eaf0f7;--bg2:#f6f9fc;--card:#fff;--card2:#f4f7fb;
+--text:#0f1d30;--text2:#2c3e56;--muted:#697b93;--line:#dde6f0;--line2:#eef3f8;
+--accent:#2563eb;--accent2:#4f8cff;--accent-soft:rgba(37,99,235,.09);
+--green:#0a7d68;--green-soft:rgba(10,125,104,.12);
+--gold:#a97410;--gold-soft:rgba(169,116,16,.13);
+--plum:#7a2f9e;--plum-soft:rgba(122,47,158,.12);
+--terra:#a85a1e;--terra-soft:rgba(168,90,30,.12);
+--e1:0 1px 2px rgba(16,32,56,.06),0 2px 8px rgba(16,32,56,.05);
+--e2:0 2px 6px rgba(16,32,56,.07),0 10px 28px rgba(16,32,56,.08);
+--e3:0 8px 20px rgba(16,32,56,.10),0 20px 48px rgba(16,32,56,.10);
+--radius:20px;--radius-sm:14px;--radius-xs:11px}
+@media(prefers-color-scheme:dark){:root{
+--bg:#060d18;--bg2:#0a1424;--card:#101c2f;--card2:#16243a;
+--text:#f0f5ff;--text2:#cfdcf0;--muted:#94a6c0;--line:#22334e;--line2:#1a2942;
+--accent:#6aa1ff;--accent2:#8fbaff;--accent-soft:rgba(106,161,255,.13);
+--green:#4fd9bb;--green-soft:rgba(79,217,187,.14);
+--gold:#f0c15f;--gold-soft:rgba(240,193,95,.14);
+--plum:#c98fef;--plum-soft:rgba(201,143,239,.15);
+--terra:#f0a668;--terra-soft:rgba(240,166,104,.14);
+--e1:0 1px 2px rgba(0,0,0,.3);
+--e2:0 2px 8px rgba(0,0,0,.35);
+--e3:0 10px 30px rgba(0,0,0,.45)}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);
+background-image:radial-gradient(1200px 600px at 50% -180px,var(--accent-soft),transparent 70%);
+background-attachment:fixed;
+font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif;
+font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+.wrap{max-width:880px;margin:auto;padding:calc(18px + env(safe-area-inset-top)) 15px calc(108px + env(safe-area-inset-bottom))}
+.hero{padding:14px 4px 4px}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(30px,8vw,38px);line-height:1.04;margin:10px 0 12px;letter-spacing:-.035em;font-weight:850}
+.sub{font-size:15px;line-height:1.55;color:var(--muted);font-weight:500}
+.skyline{width:100%;height:auto;max-height:84px;margin-top:16px;display:block}
+.section-title{font-size:21px;margin:24px 4px 10px;letter-spacing:-.02em;font-weight:820}
+.card,.tile,details{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--e1)}
+.card{padding:18px;margin:12px 0}
+.tile{transition:transform .14s ease,box-shadow .14s ease,border-color .14s ease}
+a.tile:hover{transform:translateY(-2px);box-shadow:var(--e2);border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat{padding:15px}.stat span{display:block;color:var(--muted);font-size:11.5px;font-weight:750;letter-spacing:.02em}.stat b{font-size:22px;letter-spacing:-.02em}
+.badge{display:inline-block;border-radius:999px;padding:6px 11px;font-size:11px;font-weight:850;letter-spacing:.05em;background:var(--accent-soft);color:var(--accent)}
+.countdown{font-size:30px;font-weight:850;margin:8px 0 3px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.small{font-size:13px;line-height:1.55;color:var(--muted)}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.quick a{text-decoration:none;color:var(--text);padding:15px 10px;text-align:center;font-weight:750;font-size:12px;letter-spacing:-.01em}.quick span{display:block;font-size:23px;margin-bottom:7px;line-height:1}
+.weather{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.weather-card{padding:16px;position:relative;overflow:hidden}
+.weather-card>b{font-size:14.5px;letter-spacing:-.01em}
+.weather-temp{font-size:27px;font-weight:850;margin:7px 0 2px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.weather-temp.muted{font-size:15px;font-weight:700;color:var(--muted);letter-spacing:0}
+.wx-cond{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:650;color:var(--text2);margin:3px 0 6px}
+.wx-cond .wx-ico{font-size:19px;line-height:1}
+.wx-meta{display:flex;gap:12px;font-size:11.5px;color:var(--muted);font-weight:650;margin-top:7px;padding-top:8px;border-top:1px solid var(--line2);flex-wrap:wrap}
 summary{padding:16px;font-weight:900;cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;flex-wrap:wrap}summary::-webkit-details-marker{display:none}summary .sum-text{flex:1;min-width:0}.inside{padding:0 16px 16px}
 .flight{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;text-align:center}.code{font-size:27px;font-weight:950}.arrow{color:var(--muted)}
 .hotel-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hotel{padding:16px}.hotel .dates{font-size:12px;font-weight:900;color:var(--accent);margin-bottom:7px}
@@ -43,33 +86,57 @@ summary{padding:16px;font-weight:900;cursor:pointer;list-style:none;display:flex
 .timeline{border-left:2px solid var(--line);padding-left:17px;margin-left:7px}.event{position:relative;margin:0 0 17px}.event:before{content:"";position:absolute;left:-23px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--accent)}.time{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:850}.event b{display:block;margin:2px 0 3px}
 table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:11px;text-transform:uppercase;color:var(--muted)}
 .checkrow{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}.checkrow:last-child{border-bottom:0}.checkrow input{width:20px;height:20px;margin:0}.checkrow>div{flex:1;min-width:0}.checkrow .btn{flex:none}
-.btn{display:inline-block;text-decoration:none;border-radius:12px;padding:9px 12px;background:var(--accent);color:white;font-weight:800;font-size:12px}.btn.secondary{background:transparent;color:var(--accent);border:1px solid var(--line)}
-.notice{border-left:4px solid var(--gold);padding:12px;border-radius:12px;background:rgba(184,131,19,.09);font-size:13px;line-height:1.5}
-.nav{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-around;padding:9px 6px calc(9px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--card);z-index:10}.nav a{text-align:center;text-decoration:none;color:var(--muted);font-size:10px}.nav span{display:block;font-size:21px}
-.footer{text-align:center;color:var(--muted);font-size:11px;line-height:1.5;margin-top:24px}
+.btn{display:inline-block;text-decoration:none;border-radius:var(--radius-xs);padding:9px 13px;background:var(--accent);color:#fff;font-weight:750;font-size:12px;border:1px solid var(--accent);cursor:pointer;transition:all .14s ease;white-space:nowrap}
+.btn:hover{filter:brightness(1.08)}
+.btn.secondary{background:transparent;color:var(--accent);border:1px solid var(--line)}
+.btn.secondary:hover{border-color:var(--accent);background:var(--accent-soft)}
+.notice{border-left:3px solid var(--gold);padding:13px 14px;border-radius:var(--radius-xs);background:var(--gold-soft);font-size:13px;line-height:1.6;color:var(--text2)}
+.city-hero{position:relative;width:100%;border-radius:var(--radius);overflow:hidden;margin:4px 0 12px;border:1px solid var(--line);box-shadow:var(--e1);display:block;background:var(--card)}
+.city-hero svg{display:block;width:100%;height:auto}
+.city-hero .ch-label{position:absolute;left:16px;bottom:12px;color:#fff;font-weight:850;font-size:19px;letter-spacing:-.02em;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+.city-hero .ch-sub{position:absolute;right:14px;top:12px;color:rgba(255,255,255,.95);font-weight:700;font-size:10.5px;letter-spacing:.05em;padding:5px 10px;border-radius:999px;background:rgba(10,18,34,.42);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+@supports not (backdrop-filter:blur(1px)){.city-hero .ch-sub{background:rgba(10,18,34,.66)}}
+.save-row{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--line2)}
+.save-row:last-child{border-bottom:0}
+.save-row .si{font-size:19px;flex:none;width:26px;text-align:center}
+.save-row .sm{flex:1;min-width:0}
+.save-row .sm b{display:block;font-size:13.5px;font-weight:750;letter-spacing:-.01em}
+.save-row .sm span{font-size:11.5px;color:var(--muted)}
+.save-row button{flex:none;border:1px solid var(--line);background:transparent;color:var(--accent);border-radius:var(--radius-xs);padding:7px 11px;font-weight:750;font-size:11.5px;cursor:pointer;transition:all .14s ease;min-width:74px}
+.save-row button:hover{border-color:var(--accent);background:var(--accent-soft)}
+.save-row button.done{background:var(--green-soft);color:var(--green);border-color:transparent}
+.nav{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-around;padding:8px 6px calc(8px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);z-index:20}
+.nav a{text-align:center;text-decoration:none;color:var(--muted);font-size:10px;font-weight:700;padding:4px 10px;border-radius:12px;transition:color .14s ease,background .14s ease;min-width:56px}
+.nav a:hover,.nav a:active{color:var(--accent);background:var(--accent-soft)}
+.nav span{display:block;font-size:20px;margin-bottom:2px;line-height:1}
+@supports not (backdrop-filter:blur(1px)){.nav{background:var(--card)}}
+.footer{text-align:center;color:var(--muted);font-size:11px;line-height:1.6;margin-top:28px}
 @media(max-width:650px){.weather{grid-template-columns:1fr}.hotel-grid{grid-template-columns:1fr}.quick{grid-template-columns:repeat(2,1fr)}}@media(min-width:680px){.grid{grid-template-columns:repeat(4,1fr)}}
-.today-card{border:1px solid var(--accent);position:relative;overflow:hidden}
-.today-card .badge{background:var(--accent);color:#fff}
-.today-title{font-size:19px;font-weight:900;margin:10px 0 8px}
+.today-card{border:1px solid transparent;position:relative;overflow:hidden;box-shadow:var(--e2);
+background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(135deg,var(--accent),var(--plum)) border-box;
+padding-top:20px}
+.today-card:before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--accent),var(--plum),var(--terra))}
+.today-card .badge{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 2px 8px var(--accent-soft)}
+.today-title{font-size:21px;font-weight:850;margin:11px 0 10px;letter-spacing:-.025em;line-height:1.2}
 .today-list{margin:0;padding:0;list-style:none}
-.today-list li{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.today-list li{display:flex;gap:11px;padding:9px 0;border-bottom:1px solid var(--line2);font-size:13.5px;align-items:flex-start}
 .today-list li:last-child{border-bottom:0}
-.today-list .t{color:var(--accent);font-weight:900;min-width:66px;font-size:12px;padding-top:1px}
-.today-list .status{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;padding:2px 7px;border-radius:999px;margin-left:auto;flex:none;height:fit-content}
-.status-confirmed{background:rgba(13,138,117,.15);color:var(--green)}
-.status-pending{background:rgba(184,131,19,.15);color:var(--gold)}
-.status-flexible{background:rgba(106,119,139,.18);color:var(--muted)}
-.status-scheduled{background:rgba(47,111,237,.12);color:var(--accent)}
-.today-flight{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;text-align:center;background:var(--bg);border-radius:14px;padding:12px;margin:4px 0 12px}
-.today-flight .code{font-size:21px;font-weight:950}
-.today-flight .arrow{color:var(--muted)}
-.today-flight .flabel{grid-column:1/-1;font-size:11.5px;color:var(--muted);font-weight:800;margin-top:2px}
-.today-hotel{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;background:var(--bg);border-radius:14px;padding:12px;margin:4px 0}
+.today-list .t{color:var(--accent);font-weight:850;min-width:70px;font-size:11.5px;padding-top:2px;letter-spacing:.01em}
+.today-list .status{margin-left:auto;flex:none;height:fit-content}
+.status-confirmed{background:var(--green-soft);color:var(--green)}
+.status-pending{background:var(--gold-soft);color:var(--gold)}
+.status-flexible{background:rgba(106,119,139,.16);color:var(--muted)}
+.status-scheduled{background:var(--accent-soft);color:var(--accent)}
+.today-flight{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;text-align:center;background:var(--card2);border:1px solid var(--line2);border-radius:var(--radius-sm);padding:14px 12px;margin:6px 0 12px}
+.today-flight .code{font-size:23px;font-weight:900;letter-spacing:-.02em}
+.today-flight .arrow{color:var(--accent);font-size:15px}
+.today-flight .flabel{grid-column:1/-1;font-size:11.5px;color:var(--muted);font-weight:750;margin-top:6px;padding-top:8px;border-top:1px solid var(--line2)}
+.today-hotel{display:flex;justify-content:space-between;align-items:flex-start;gap:11px;background:var(--card2);border:1px solid var(--line2);border-radius:var(--radius-sm);padding:13px;margin:6px 0}
 .today-hotel+.today-hotel{margin-top:8px}
-.today-hotel .tag{font-size:9.5px;font-weight:900;text-transform:uppercase;padding:4px 9px;border-radius:999px;flex:none;height:fit-content}
-.tag-checkin{background:rgba(13,138,117,.15);color:var(--green)}
-.tag-checkout{background:rgba(184,131,19,.15);color:var(--gold)}
-.tag-staying{background:rgba(47,111,237,.12);color:var(--accent)}
+.today-hotel .tag{font-size:9.5px;font-weight:850;text-transform:uppercase;letter-spacing:.04em;padding:4px 9px;border-radius:999px;flex:none;height:fit-content}
+.tag-checkin{background:var(--green-soft);color:var(--green)}
+.tag-checkout{background:var(--gold-soft);color:var(--gold)}
+.tag-staying{background:var(--accent-soft);color:var(--accent)}
 .clocks{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
 .clock{padding:12px 8px;text-align:center}
 .clock .city{font-size:11px;font-weight:850;color:var(--muted);text-transform:uppercase}
@@ -92,30 +159,53 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 .place .rating{font-size:12.5px;color:var(--gold);font-weight:800;margin-bottom:8px}
 @media(max-width:650px){.place-grid{grid-template-columns:1fr}}
 @media(max-width:650px){.clocks{grid-template-columns:repeat(2,1fr)}.essential-grid{grid-template-columns:1fr}}
-.status{display:inline-block;font-size:9.5px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;padding:3px 8px;border-radius:999px;white-space:nowrap}
-.status-planned{background:rgba(122,47,158,.15);color:#7a2f9e}
-.status-optional{background:rgba(106,119,139,.18);color:var(--muted)}
-.status-food{background:rgba(209,122,63,.16);color:#a85a1e}
-@media(prefers-color-scheme:dark){.status-planned{color:#c98fef}.status-food{color:#f0a668}}
-.area-day-tag{display:inline-flex;align-items:center;font-size:10.5px;font-weight:850;padding:3px 9px;border-radius:999px;background:rgba(47,111,237,.1);color:var(--accent);margin-left:8px;vertical-align:middle;white-space:nowrap}
-.city-heading{font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:22px 4px 8px}.city-heading:first-child{margin-top:4px}
+.status{display:inline-block;font-size:9.5px;font-weight:850;text-transform:uppercase;letter-spacing:.045em;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.status-booked,.status-freebooked{background:var(--green-soft);color:var(--green)}
+.status-mustgo,.status-priority{background:var(--accent-soft);color:var(--accent)}
+.status-advance,.status-planned{background:var(--plum-soft);color:var(--plum)}
+.status-potential,.status-optional{background:rgba(106,119,139,.16);color:var(--muted)}
+.status-pending{background:var(--gold-soft);color:var(--gold)}
+.status-food{background:var(--terra-soft);color:var(--terra)}
+.status-suggested{background:rgba(106,119,139,.13);color:var(--muted);text-transform:none;font-style:italic;font-weight:700}
+.cost-tag{font-size:11px;color:var(--muted);font-weight:650;white-space:nowrap}
+.item-warning{flex:1 1 100%;font-size:12px;line-height:1.5;color:var(--gold);background:var(--gold-soft);border-radius:var(--radius-xs);padding:9px 11px;margin-top:2px}
+.kms{display:flex;gap:5px;flex:none;margin-left:auto}
+.kms button{border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:10.5px;font-weight:800;padding:5px 9px;border-radius:8px;cursor:pointer;transition:all .14s ease}
+.kms button:hover{border-color:var(--accent)}
+.kms button.on[data-k="keep"]{background:var(--green-soft);color:var(--green);border-color:transparent}
+.kms button.on[data-k="maybe"]{background:var(--gold-soft);color:var(--gold);border-color:transparent}
+.kms button.on[data-k="skip"]{background:rgba(106,119,139,.18);color:var(--muted);border-color:transparent}
+.area-item.is-skipped{opacity:.5}
+.area-item.is-skipped b{text-decoration:line-through;text-decoration-color:var(--muted)}
+.decision-card{border:1px solid var(--gold);border-radius:var(--radius);padding:16px;margin:12px 0;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(135deg,var(--gold),var(--terra)) border-box;border-width:1px}
+.decision-card h3{margin:2px 0 8px;font-size:16px;letter-spacing:-.01em}
+.decision-card p{margin:0 0 12px;font-size:13.5px;line-height:1.6;color:var(--text2)}
+.decision-card .kms{margin-left:0;margin-top:2px}
+.area-day-tag{display:inline-flex;align-items:center;font-size:10.5px;font-weight:800;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin-left:8px;vertical-align:middle;white-space:nowrap}
+.city-heading{margin:26px 0 8px}.city-heading:first-child{margin-top:6px}
 .qa-group-label{font-size:10.5px;font-weight:850;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:14px 2px 8px}.qa-group-label:first-child{margin-top:0}
 .zone-divider{display:flex;align-items:center;gap:12px;margin:38px 4px 2px}
 .zone-divider .zlabel{font-size:11.5px;font-weight:900;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);white-space:nowrap}
 .zone-divider .zline{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
 .area-list{display:flex;flex-direction:column}
-.area-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.area-item{display:flex;align-items:center;gap:9px;padding:11px 0;border-bottom:1px solid var(--line2);font-size:13.5px;flex-wrap:wrap}
 .area-item:last-child{border-bottom:0}
-.area-item b{flex:1;min-width:0;font-weight:700}
-.area-item a.btn{flex:none;padding:5px 9px;font-size:11px}
+.area-item b{flex:1 1 100%;min-width:0;font-weight:700;letter-spacing:-.01em}
+.area-item .small{font-size:12px}
+.area-item a.btn{flex:none;padding:5px 10px;font-size:11px;margin-left:auto}
+.area-item .kms+a.btn{margin-left:0}
+@media(min-width:560px){
+.area-item{flex-wrap:nowrap}
+.area-item b{flex:1 1 auto}}
 .food-row{margin-top:10px;padding-top:12px;border-top:1px dashed var(--line)}
 .food-row .lbl{font-size:11px;font-weight:850;color:var(--muted);text-transform:uppercase;margin-bottom:7px}
 .food-chips{display:flex;flex-wrap:wrap;gap:7px}
-.food-chip{font-size:12px;font-weight:750;padding:6px 11px;border-radius:999px;background:rgba(209,122,63,.12);color:#a85a1e;border:1px solid rgba(209,122,63,.28);text-decoration:none}
-@media(prefers-color-scheme:dark){.food-chip{color:#f0a668;background:rgba(240,166,104,.12);border-color:rgba(240,166,104,.28)}}
+.food-chip{font-size:12px;font-weight:700;padding:7px 12px;border-radius:999px;background:var(--terra-soft);color:var(--terra);border:1px solid color-mix(in srgb,var(--terra) 30%,transparent);text-decoration:none;transition:transform .12s ease}
+.food-chip:hover{transform:translateY(-1px)}
 .city-filter{display:flex;gap:8px;margin:0 0 14px;flex-wrap:wrap}
-.city-filter button{border:1px solid var(--line);background:var(--card);color:var(--text);padding:9px 14px;border-radius:999px;font-weight:800;font-size:12.5px;cursor:pointer}
-.city-filter button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.city-filter button{border:1px solid var(--line);background:var(--card);color:var(--text);padding:9px 15px;border-radius:999px;font-weight:750;font-size:12.5px;cursor:pointer;transition:all .14s ease}
+.city-filter button:hover{border-color:var(--accent);color:var(--accent)}
+.city-filter button.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 2px 10px var(--accent-soft)}
 .trip-map{width:100%;height:360px;border-radius:16px;overflow:hidden;margin:12px 0;border:1px solid var(--line)}
 .map-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
 .legend-chip{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:750;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--text);cursor:pointer;user-select:none}
@@ -212,6 +302,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 <a class="tile" href="#bookings"><span>🎟️</span>Bookings</a>
 <a class="tile" href="#apps"><span>📱</span>Apps</a>
 <a class="tile" href="#todo"><span>✅</span>To Do</a>
+<a class="tile" href="#saved"><span>🔖</span>Saved Views</a>
 </div>
 
 <div class="zone-divider"><span class="zlabel">🧭 Live Right Now</span><span class="zline"></span></div>
@@ -224,9 +315,9 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 <section class="card">
 <div class="small">These cards update automatically from Open-Meteo as each destination enters the live forecast window.</div>
 <div class="weather" style="margin-top:12px">
-<div class="tile weather-card" id="weather-london"><b>🇬🇧 London</b><div class="weather-temp">Loading…</div><div class="small">Aug 17–24</div></div>
-<div class="tile weather-card" id="weather-barcelona"><b>🇪🇸 Barcelona</b><div class="weather-temp">Loading…</div><div class="small">Aug 24–27</div></div>
-<div class="tile weather-card" id="weather-lisbon"><b>🇵🇹 Lisbon</b><div class="weather-temp">Loading…</div><div class="small">Aug 27–30</div></div>
+<div class="tile weather-card" id="weather-london"><b>🇬🇧 London</b><div class="small">Aug 17–24</div><div class="weather-temp">…</div><div class="wx-body"></div></div>
+<div class="tile weather-card" id="weather-barcelona"><b>🇪🇸 Barcelona</b><div class="small">Aug 24–27</div><div class="weather-temp">…</div><div class="wx-body"></div></div>
+<div class="tile weather-card" id="weather-lisbon"><b>🇵🇹 Lisbon</b><div class="small">Aug 27–30</div><div class="weather-temp">…</div><div class="wx-body"></div></div>
 </div>
 </section>
 
@@ -245,14 +336,14 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 
 <div class="zone-divider"><span class="zlabel">🧾 Your Bookings</span><span class="zline"></span></div>
 <h2 class="section-title" id="flights">✈️ Verified Flights</h2>
-<details open><summary><span class="brand-badge badge-ac">AC</span><span class="sum-text">Aug 16–17 • Air Canada AC 856 • Toronto → London</span></summary><div class="inside"><div class="flight"><div><div class="code">YYZ</div><div class="small">Terminal 1<br>8:15 PM</div></div><div class="arrow">→</div><div><div class="code">LHR</div><div class="small">Terminal 2<br>8:35 AM +1</div></div></div><div class="small" style="text-align:center;margin-top:10px">Airbus A330-300 • Economy Basic • 7h 20m</div></div></details>
-<details><summary><span class="brand-badge badge-ba">BA</span><span class="sum-text">Aug 24 • British Airways BA 482 • London → Barcelona</span></summary><div class="inside"><div class="flight"><div><div class="code">LHR</div><div class="small">Terminal 5<br>4:15 PM</div></div><div class="arrow">→</div><div><div class="code">BCN</div><div class="small">Terminal 1<br>7:35 PM</div></div></div><div class="small" style="text-align:center;margin-top:10px">Airbus A320neo • Economy Plus • 2h 20m</div></div></details>
-<details><summary><span class="brand-badge badge-tp">TP</span><span class="sum-text">Aug 27 • TAP TP 1031 • Barcelona → Lisbon</span></summary><div class="inside"><div class="flight"><div><div class="code">BCN</div><div class="small">11:25 AM</div></div><div class="arrow">→</div><div><div class="code">LIS</div><div class="small">12:25 PM</div></div></div><div class="small" style="text-align:center;margin-top:10px">Direct • Economy • 2h</div></div></details>
-<details><summary><span class="brand-badge badge-tp">TP</span><span class="sum-text">Aug 30 • TAP TP 257 • Lisbon → Toronto</span></summary><div class="inside"><div class="flight"><div><div class="code">LIS</div><div class="small">10:40 AM</div></div><div class="arrow">→</div><div><div class="code">YYZ</div><div class="small">2:00 PM</div></div></div><div class="small" style="text-align:center;margin-top:10px">Direct • Economy • 8h 20m</div></div></details>
+<details open><summary><span class="brand-badge badge-ac">AC</span><span class="sum-text">Aug 16–17 • Air Canada AC 856 • Toronto → London</span></summary><div class="inside"><div class="flight"><div><div class="code">YYZ</div><div class="small">Terminal 1<br>8:15 PM</div></div><div class="arrow">→</div><div><div class="code">LHR</div><div class="small">Terminal 2<br>8:35 AM +1</div></div></div><div class="small" style="text-align:center;margin-top:10px">Airbus A330-300 • Economy Basic • 7h 20m • 4 passengers</div></div></details>
+<details><summary><span class="brand-badge badge-ba">BA</span><span class="sum-text">Aug 24 • British Airways BA 482 • London → Barcelona</span></summary><div class="inside"><div class="flight"><div><div class="code">LHR</div><div class="small">Terminal 5<br>4:15 PM</div></div><div class="arrow">→</div><div><div class="code">BCN</div><div class="small">Terminal 1<br>7:35 PM</div></div></div><div class="small" style="text-align:center;margin-top:10px">Airbus A320neo • Economy Plus • 2h 20m • 4 passengers</div></div></details>
+<details><summary><span class="brand-badge badge-tp">TP</span><span class="sum-text">Aug 27 • TAP TP 1031 • Barcelona → Lisbon</span></summary><div class="inside"><div class="flight"><div><div class="code">BCN</div><div class="small">11:25 AM</div></div><div class="arrow">→</div><div><div class="code">LIS</div><div class="small">12:25 PM</div></div></div><div class="small" style="text-align:center;margin-top:10px">Direct • Economy • 2h • 4 passengers</div></div></details>
+<details><summary><span class="brand-badge badge-tp">TP</span><span class="sum-text">Aug 30 • TAP TP 257 • Lisbon → Toronto</span></summary><div class="inside"><div class="flight"><div><div class="code">LIS</div><div class="small">10:40 AM</div></div><div class="arrow">→</div><div><div class="code">YYZ</div><div class="small">2:00 PM</div></div></div><div class="small" style="text-align:center;margin-top:10px">Direct • Economy • 8h 20m • 3 returning passengers</div></div></details>
 
 <h2 class="section-title" id="hotels">🏨 Verified Hotels</h2>
 <div class="hotel-grid">
-<div class="tile hotel"><div class="dates">AUG 17–19 • 2 NIGHTS</div><div class="hotel-head"><span class="brand-badge badge-parkplaza">PP</span><h3>Park Plaza London Riverbank</h3></div><div class="small">18 Albert Embankment, London SE1 7TJ<br>Check-in 3:00 PM • Check-out 12:00 PM<br>3 rooms • Room only</div><p><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Park+Plaza+London+Riverbank">Open map</a></p></div>
+<div class="tile hotel"><div class="dates">AUG 17–19 • 2 NIGHTS</div><div class="hotel-head"><span class="brand-badge badge-parkplaza">PP</span><h3>Park Plaza London Riverbank</h3></div><div class="small">18 Albert Embankment, London SE1 7TJ<br>Check-in 3:00 PM • Check-out 12:00 PM<br>3 rooms • Room only<br>✅ Early luggage storage confirmed free through concierge</div><p><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Park+Plaza+London+Riverbank">Open map</a></p></div>
 <div class="tile hotel"><div class="dates">AUG 19–24 • 5 NIGHTS</div><div class="hotel-head"><span class="brand-badge badge-premierinn">PI</span><h3>Premier Inn London Hayes, Heathrow</h3></div><div class="small">Millington Road, Hayes UB3 4AZ<br>Check-in 3:00 PM • Check-out 12:00 PM<br>3 double rooms</div><p><a class="btn secondary" target="_blank" href="https://maps.app.goo.gl/LLwykv4ZGGfQwRED6">Open map</a></p></div>
 <div class="tile hotel"><div class="dates">AUG 24–27 • 3 NIGHTS</div><div class="hotel-head"><span class="brand-badge badge-rogerlluria">RL</span><h3>Hotel Roger de Llúria</h3></div><div class="small">Roger de Llúria 28, Eixample, Barcelona<br>Check-in 2:00 PM–12:00 AM • Check-out by 11:30 AM<br>3 rooms • No meal plan</div><p><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+Roger+de+Lluria+Barcelona">Open map</a></p></div>
 <div class="tile hotel"><div class="dates">AUG 27–30 • 3 NIGHTS</div><div class="hotel-head"><span class="brand-badge badge-hillslisboa">HL</span><h3>Hills Hotel Lisboa</h3></div><div class="small">R. de Dona Estefânia 24, Lisbon<br>Check-in 3:00 PM–12:00 AM • Check-out 12:00 PM<br>3 standard twin rooms</div><p><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hills+Hotel+Lisboa">Open map</a></p></div>
@@ -260,19 +351,27 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 
 <h2 class="section-title" id="schedule">📅 Confirmed Schedule</h2>
 <details open data-date="2026-08-16"><summary>Sun, Aug 16 • Departure</summary><div class="inside timeline"><div class="event"><div class="time">8:15 PM</div><b>AC 856 departs Toronto</b><div class="small">YYZ Terminal 1 → London Heathrow.</div></div></div></details>
-<details open data-date="2026-08-17"><summary><span class="sum-text">Mon, Aug 17 • Arrive London + London Eye</span><span class="area-day-tag">🇬🇧 Westminster / South Bank</span></summary><div class="inside timeline"><div class="event"><div class="time">8:35 AM</div><b>Land at Heathrow</b><div class="small">Transfer to Park Plaza Riverbank; luggage can be left if the room is not ready.</div></div><div class="event"><div class="time">3:00 PM</div><b>Hotel check-in begins</b></div><div class="event"><div class="time">8:00 PM / 20:00</div><b>🎡 London Eye — confirmed</b><div class="small">2 travellers • standard tickets.</div></div></div></details>
+<details open data-date="2026-08-17"><summary><span class="sum-text">Mon, Aug 17 • Arrive London + London Eye</span><span class="area-day-tag">🇬🇧 Westminster / South Bank</span></summary><div class="inside timeline"><div class="event"><div class="time">8:35 AM</div><b>Land at Heathrow</b><div class="small">Immigration + bags, then transfer toward central London — timing below is estimated only, not guaranteed.</div></div><div class="event"><div class="time">3:00 PM</div><b>Hotel check-in begins</b><div class="small">Park Plaza Riverbank; luggage can be left if the room isn't ready.</div></div><div class="event"><div class="time">8:00 PM</div><b>🎡 London Eye — booked</b><div class="small">2 travellers • standard tickets.</div></div></div></details>
 <details data-date="2026-08-18"><summary><span class="sum-text">Tue, Aug 18 • Wedding-week events</span><span class="area-day-tag">🇬🇧 Southall (West London)</span></summary><div class="inside timeline"><div class="event"><div class="time">11:00 AM</div><b>Maiyaan</b><div class="small">Southall.</div></div><div class="event"><div class="time">1:00 PM</div><b>Mehndi</b></div><div class="event"><div class="time">4:00 PM</div><b>Ladies Sangeet</b></div></div></details>
-<details data-date="2026-08-19"><summary><span class="sum-text">Wed, Aug 19 • Move hotels</span><span class="area-day-tag">🇬🇧 City / Southwark</span></summary><div class="inside timeline"><div class="event"><div class="time">By 12:00 PM</div><b>Check out of Park Plaza</b></div><div class="event"><div class="time">3:00 PM</div><b>Premier Inn check-in begins</b></div><div class="event"><div class="time">Morning only • pending</div><b>Sky Garden fallback window</b><div class="small">Only if free tickets become available.</div></div></div></details>
-<details data-date="2026-08-20"><summary><span class="sum-text">Thu, Aug 20 • Jaggo</span><span class="area-day-tag">🇬🇧 Slough (West London)</span></summary><div class="inside timeline"><div class="event"><div class="time">6:30 PM</div><b>Jaggo Party</b><div class="small">Baylis House, Slough.</div><p><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Baylis+House+Stoke+Poges+Lane+Slough">Open map</a></p></div></div></details>
-<details data-date="2026-08-21"><summary><span class="sum-text">Fri, Aug 21 • Flexible London day</span><span class="area-day-tag">🇬🇧 Pick an area</span></summary><div class="inside small">Exterior sightseeing, shopping, food and flexible London plans — good day to pick one of the London areas below: Bloomsbury / Covent Garden / Soho, South Kensington / Knightsbridge, City / Southwark, or Camden.</div></details>
-<details data-date="2026-08-22"><summary><span class="sum-text">Sat, Aug 22 • Anand Karaj</span><span class="area-day-tag">📍 Gravesend, Kent</span></summary><div class="inside timeline"><div class="event"><div class="time">9:00 AM</div><b>Be at the Gurdwara</b><div class="small">Gravesend.</div></div><div class="event"><div class="time">9:30 AM</div><b>Milni</b></div><div class="event"><div class="time">10:30 AM</div><b>Anand Karaj</b></div></div></details>
+<details data-date="2026-08-19"><summary><span class="sum-text">Wed, Aug 19 • Westminster → West End, then move hotels</span><span class="area-day-tag">🇬🇧 Westminster → West End</span></summary><div class="inside timeline"><div class="event"><div class="time">Morning</div><b>Westminster → West End sightseeing</b><div class="small">Buckingham Palace exterior, St James's Park, Trafalgar Square, Covent Garden, Soho, British Museum — pick from the Explore list below.</div></div><div class="event"><div class="time">By 12:00 PM</div><b>Check out of Park Plaza</b></div><div class="event"><div class="time">~1:00–2:00 PM</div><b>Travel west to Hayes</b><div class="small">Estimated only.</div></div><div class="event"><div class="time">3:00 PM</div><b>Premier Inn check-in begins</b></div></div></details>
+<details data-date="2026-08-20"><summary><span class="sum-text">Thu, Aug 20 • Jaggo</span><span class="area-day-tag">🇬🇧 Slough (West London)</span></summary><div class="inside timeline"><div class="event"><div class="time">6:30 PM</div><b>Jaggo Party</b><div class="small">Baylis House, Slough.</div><p><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Baylis+House+Stoke+Poges+Lane+Slough">Open map</a></p></div></div>
+<div class="notice" style="margin:0 16px 16px">Windsor Castle makes sense as a daytime add-on since the group is already staying west — just don't let it run late into Jaggo prep.</div></details>
+<details open data-date="2026-08-21"><summary><span class="sum-text">Fri, Aug 21 • Horizon 22 + open London sightseeing</span><span class="area-day-tag">🇬🇧 City / Tower / Southwark</span></summary><div class="inside timeline"><div class="event"><div class="time">12:00 PM</div><b>🏙️ Horizon 22 — free-booked</b><div class="small">22 Bishopsgate, Level 58 • 4 adults • free.</div></div></div>
+<div class="inside small">Rest of the day not locked yet — compare against what Aug 17 and Aug 19 already covered, then pick one:<br><br>
+<b>Option A — City / Tower / Southwark:</b> Sky Garden, Tower area, Borough Market, Shard area, Leadenhall Market, St Dunstan in the East.<br>
+<b>Option B — Central / West End:</b> British Museum, Covent Garden, Soho, Trafalgar Square, National Gallery, a West End show.<br>
+<b>Option C — South Kensington:</b> V&amp;A, Natural History Museum, Harrods, Hyde Park, the Schiaparelli exhibition, Our Story with David Attenborough.</div></details>
+<details data-date="2026-08-22"><summary><span class="sum-text">Sat, Aug 22 • Anand Karaj</span><span class="area-day-tag">📍 Gravesend, Kent</span></summary><div class="inside timeline"><div class="event"><div class="time">9:00 AM</div><b>Barat</b><div class="small">Gravesend.</div></div><div class="event"><div class="time">9:30 AM</div><b>Milni</b></div><div class="event"><div class="time">10:30 AM</div><b>Anand Karaj</b></div></div></details>
 <details data-date="2026-08-23"><summary><span class="sum-text">Sun, Aug 23 • Reception</span><span class="area-day-tag">📍 Great Offley, Herts</span></summary><div class="inside timeline"><div class="event"><div class="time">4:00 PM</div><b>Reception</b><div class="small">Offley Place, Great Offley / Hitchin area.</div><p><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Offley+Place+Hitchin">Open map</a></p></div></div></details>
-<details data-date="2026-08-24"><summary>Mon, Aug 24 • London → Barcelona</summary><div class="inside timeline"><div class="event"><div class="time">4:15 PM</div><b>BA 482 departs Heathrow</b></div><div class="event"><div class="time">7:35 PM</div><b>Arrive Barcelona</b></div></div></details>
-<details data-date="2026-08-25"><summary><span class="sum-text">Tue, Aug 25 • Sagrada Família</span><span class="area-day-tag">🇪🇸 Sagrada / Gràcia</span></summary><div class="inside timeline"><div class="event"><div class="time">9:45 AM</div><b>⛪ Sagrada Família — confirmed</b></div><div class="event"><div class="time">Later</div><b>Flexible Gaudí / Eixample sightseeing</b></div></div></details>
-<details data-date="2026-08-26"><summary><span class="sum-text">Wed, Aug 26 • Barcelona sightseeing</span><span class="area-day-tag">🇪🇸 Sagrada / Gràcia</span></summary><div class="inside timeline"><div class="event"><div class="time">Target 9:30 AM</div><b>🌿 Park Güell — planned, not yet confirmed</b></div></div></details>
-<details data-date="2026-08-27"><summary>Thu, Aug 27 • Barcelona → Lisbon</summary><div class="inside timeline"><div class="event"><div class="time">11:25 AM</div><b>TP 1031 departs Barcelona</b></div><div class="event"><div class="time">12:25 PM</div><b>Arrive Lisbon</b></div><div class="event"><div class="time">3:00 PM</div><b>Hills Hotel check-in begins</b></div></div></details>
-<details data-date="2026-08-28"><summary><span class="sum-text">Fri, Aug 28 • Lisbon</span><span class="area-day-tag">🇵🇹 Belém</span></summary><div class="inside small">Belém / central Lisbon day currently planned. Boat experience remains optional.</div></details>
-<details data-date="2026-08-29"><summary><span class="sum-text">Sat, Aug 29 • Lisbon / Sintra</span><span class="area-day-tag">🇵🇹 Sintra</span></summary><div class="inside small">Sintra remains likely but not yet booked. Pena Palace would be the key timed reservation.</div></details>
+<details data-date="2026-08-24"><summary>Mon, Aug 24 • London → Barcelona</summary><div class="inside timeline"><div class="event"><div class="time">By 12:00 PM</div><b>Check out of Premier Inn</b></div><div class="event"><div class="time">4:15 PM</div><b>BA 482 departs Heathrow</b></div><div class="event"><div class="time">7:35 PM</div><b>Arrive Barcelona</b></div><div class="event"><div class="time">Evening</div><b>Check-in + nearby dinner only</b><div class="small">Estimated hotel arrival ~9:15–10:00 PM — keep the evening light.</div></div></div></details>
+<details data-date="2026-08-25"><summary><span class="sum-text">Tue, Aug 25 • Sagrada Família</span><span class="area-day-tag">🇪🇸 Sagrada / Gràcia</span></summary><div class="inside timeline"><div class="event"><div class="time">9:45 AM</div><b>⛪ Sagrada Família — booked</b><div class="small">4 guests.</div></div><div class="event"><div class="time">Later</div><b>Sercotel Rosellón rooftop → Gràcia → Park Güell</b><div class="small">Flexible Gaudí / Eixample flow.</div></div></div></details>
+<details data-date="2026-08-26"><summary><span class="sum-text">Wed, Aug 26 • Barcelona sightseeing — choose one</span><span class="area-day-tag">🇪🇸 Pick an option</span></summary><div class="inside small">Still under review — two geographic options:<br><br>
+<b>Option A — Old City / Gothic / El Born:</b> La Boqueria, La Rambla, Gothic Quarter, Barcelona Cathedral exterior, Picasso Museum, El Born, Arc de Triomf, Parc de la Ciutadella.<br>
+<b>Option B — Montjuïc:</b> Montjuïc, cable car (paid), Mirador de l'Alcalde, Olympic Ring.<br><br>
+Evening idea: Tablao Flamenco Cordobés, if a cultural evening is kept.</div></details>
+<details data-date="2026-08-27"><summary><span class="sum-text">Thu, Aug 27 • Barcelona → Lisbon: Baixa/Chiado</span><span class="area-day-tag">🇵🇹 Baixa / Chiado</span></summary><div class="inside timeline"><div class="event"><div class="time">11:25 AM</div><b>TP 1031 departs Barcelona</b></div><div class="event"><div class="time">12:25 PM</div><b>Arrive Lisbon</b></div><div class="event"><div class="time">3:00 PM</div><b>Hills Hotel check-in begins</b><div class="small">Estimated hotel arrival ~1:30–2:00 PM if the room isn't ready yet — luggage storage may be needed.</div></div></div></details>
+<details data-date="2026-08-28"><summary><span class="sum-text">Fri, Aug 28 • Alfama</span><span class="area-day-tag">🇵🇹 Alfama</span></summary><div class="inside small">Sé → Miradouro de Santa Luzia → Alfama → Castelo de São Jorge → Clube de Fado in the evening if kept. Belém is not scheduled this day — see the Belém decision cluster in Explore by Area.</div></details>
+<details data-date="2026-08-29"><summary><span class="sum-text">Sat, Aug 29 • Sintra day trip</span><span class="area-day-tag">🇵🇹 Sintra</span></summary><div class="inside small">Treated as a dedicated day trip. Pena Palace + Park and Quinta da Regaleira are both high-priority potential — advance booking recommended if kept.</div></details>
 <details data-date="2026-08-30"><summary>Sun, Aug 30 • Return to Toronto</summary><div class="inside timeline"><div class="event"><div class="time">10:40 AM</div><b>TP 257 departs Lisbon</b></div><div class="event"><div class="time">2:00 PM</div><b>Arrive Toronto</b></div></div></details>
 
 <h2 class="section-title" id="baggage">🧳 Baggage</h2>
@@ -288,12 +387,14 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 
 <h2 class="section-title" id="bookings">🎟️ Booking Status</h2>
 <section class="card">
-<div class="checkrow"><span>✅</span><div><b>London Eye</b> <span class="status status-confirmed">Confirmed</span><div class="small">Aug 17 • 8:00 PM • Westminster / South Bank</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=The+London+Eye+London">Open map</a></div>
-<div class="checkrow"><span>✅</span><div><b>Sagrada Família</b> <span class="status status-confirmed">Confirmed</span><div class="small">Aug 25 • 9:45 AM • Sagrada / Gràcia</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sagrada+Familia+Barcelona">Open map</a></div>
-<div class="checkrow"><span>👀</span><div><b>Sky Garden</b> <span class="status status-pending">Pending availability</span><div class="small">Watching Aug 17, Aug 18, then morning Aug 19 • City / Southwark</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sky+Garden+London">Open map</a></div>
-<div class="checkrow"><span>🟡</span><div><b>Park Güell</b> <span class="status status-planned">Planned</span><div class="small">Target Aug 26 around 9:30 AM • not yet booked • Sagrada / Gràcia</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Park+Guell+Barcelona">Open map</a></div>
-<div class="checkrow"><span>🟡</span><div><b>Sintra / Pena Palace</b> <span class="status status-planned">Planned</span><div class="small">Likely Aug 29 • not yet booked • Sintra</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Pena+Palace+Sintra">Open map</a></div>
-<div class="checkrow"><span>⏸️</span><div><b>Boat experience</b> <span class="status status-optional">Optional</span><div class="small">Revisit later.</div></div></div>
+<div class="checkrow"><span>✅</span><div><b>Horizon 22</b> <span class="status status-freebooked">Free-booked</span><div class="small">Fri, Aug 21 • 12:00 PM • 4 adults • free • City/Tower/Southwark</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Horizon+22+Sky+Garden+Bishopsgate+London">Open map</a></div>
+<div class="checkrow"><span>✅</span><div><b>London Eye</b> <span class="status status-booked">Booked</span><div class="small">Aug 17 • 8:00 PM • Westminster / South Bank</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=The+London+Eye+London">Open map</a></div>
+<div class="checkrow"><span>✅</span><div><b>Sagrada Família</b> <span class="status status-booked">Booked</span><div class="small">Aug 25 • 9:45 AM • Sagrada / Gràcia</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sagrada+Familia+Barcelona">Open map</a></div>
+<div class="checkrow"><span>👀</span><div><b>Sky Garden</b> <span class="status status-priority">Priority</span><div class="small">Free reservation preferred • ~£11.50 backup exists but not booked • City/Tower/Southwark</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sky+Garden+London">Open map</a></div>
+<div class="checkrow"><span>🟣</span><div><b>Park Güell</b> <span class="status status-priority">Priority</span><div class="small">Target Aug 26 around 9:30 AM • advance reservation recommended • Sagrada / Gràcia</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Park+Guell+Barcelona">Open map</a></div>
+<div class="checkrow"><span>🟣</span><div><b>Pena Palace + Park</b> <span class="status status-priority">Priority</span><div class="small">Likely Aug 29 • advance booking recommended • Sintra</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Pena+Palace+Sintra">Open map</a></div>
+<div class="checkrow"><span>🟣</span><div><b>Quinta da Regaleira</b> <span class="status status-priority">Priority</span><div class="small">Likely Aug 29 • advance booking recommended • Sintra</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Quinta+da+Regaleira+Sintra">Open map</a></div>
+<div class="checkrow"><span>🍫</span><div><b>Landeau Chocolate</b> <span class="status status-mustgo">Must-go</span><div class="small">Chocolate cake • Baixa/Chiado, Aug 27 arrival evening or nearby</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Landeau+Chocolate+Lisbon">Open map</a></div>
 </section>
 
 <div class="zone-divider"><span class="zlabel">🗺️ Explore</span><span class="zline"></span></div>
@@ -331,26 +432,75 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 </div>
 </section>
 
-<div class="city-heading" data-city-group="london">🇬🇧 London</div>
+<div class="city-heading" data-city-group="london">
+<div class="city-hero">
+<svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of the London skyline at dusk">
+<defs>
+<linearGradient id="lonSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16233f"/><stop offset=".5" stop-color="#3b4a75"/><stop offset=".82" stop-color="#8a6a92"/><stop offset="1" stop-color="#d08a86"/></linearGradient>
+<linearGradient id="lonFar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5a85"/><stop offset="1" stop-color="#39476e"/></linearGradient>
+<linearGradient id="lonWater" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a4a72"/><stop offset="1" stop-color="#1a2440"/></linearGradient>
+</defs>
+<rect width="800" height="200" fill="url(#lonSky)"/>
+<circle cx="648" cy="150" r="23" fill="#ffcf9b" opacity=".92"/>
+<g fill="url(#lonFar)" opacity=".5">
+<rect x="20" y="126" width="26" height="46"/><rect x="54" y="136" width="20" height="36"/><rect x="238" y="130" width="22" height="42"/>
+<rect x="268" y="142" width="16" height="30"/><rect x="500" y="134" width="24" height="38"/><rect x="530" y="146" width="18" height="26"/>
+<rect x="742" y="128" width="24" height="44"/><rect x="770" y="140" width="18" height="32"/>
+</g>
+<g fill="#22304f">
+<path d="M117 104 L104 172 L112 172 L120 108 Z"/><path d="M123 104 L136 172 L128 172 L120 108 Z"/>
+<circle cx="120" cy="104" r="43" fill="none" stroke="#1e2b48" stroke-width="4.5"/>
+<circle cx="120" cy="104" r="33" fill="none" stroke="#2b3a5c" stroke-width="1.4" opacity=".7"/>
+<g stroke="#2b3a5c" stroke-width="1.3" opacity=".7">
+<line x1="120" y1="61" x2="120" y2="147"/><line x1="77" y1="104" x2="163" y2="104"/>
+<line x1="90" y1="74" x2="150" y2="134"/><line x1="150" y1="74" x2="90" y2="134"/>
+</g>
+<g fill="#ffe6b8" opacity=".75"><circle cx="120" cy="61" r="2.6"/><circle cx="163" cy="104" r="2.6"/><circle cx="120" cy="147" r="2.6"/><circle cx="77" cy="104" r="2.6"/><circle cx="150" cy="74" r="2.4"/><circle cx="150" cy="134" r="2.4"/><circle cx="90" cy="74" r="2.4"/><circle cx="90" cy="134" r="2.4"/></g>
+<circle cx="120" cy="104" r="5.5" fill="#1e2b48"/>
+</g>
+<g fill="#1e2b48">
+<rect x="300" y="72" width="34" height="100"/><polygon points="300,72 317,40 334,72"/>
+<rect x="305" y="86" width="24" height="24" rx="2" fill="#ffe6b8"/>
+<line x1="317" y1="98" x2="317" y2="90" stroke="#1e2b48" stroke-width="2"/><line x1="317" y1="98" x2="324" y2="98" stroke="#1e2b48" stroke-width="2"/>
+<rect x="340" y="120" width="120" height="52"/>
+<g fill="#1e2b48"><rect x="346" y="106" width="8" height="16"/><rect x="362" y="100" width="8" height="22"/><rect x="378" y="106" width="8" height="16"/><rect x="394" y="98" width="10" height="24"/><rect x="412" y="106" width="8" height="16"/><rect x="428" y="102" width="8" height="20"/><rect x="444" y="108" width="8" height="14"/></g>
+<g fill="#3d4e78" opacity=".85"><rect x="348" y="132" width="7" height="16" rx="3"/><rect x="364" y="132" width="7" height="16" rx="3"/><rect x="380" y="132" width="7" height="16" rx="3"/><rect x="396" y="132" width="7" height="16" rx="3"/><rect x="412" y="132" width="7" height="16" rx="3"/><rect x="428" y="132" width="7" height="16" rx="3"/><rect x="444" y="132" width="7" height="16" rx="3"/></g>
+</g>
+<g fill="#1a2743">
+<rect x="560" y="84" width="30" height="88"/><polygon points="560,84 575,58 590,84"/>
+<rect x="666" y="84" width="30" height="88"/><polygon points="666,84 681,58 696,84"/>
+<rect x="590" y="96" width="76" height="9"/><rect x="590" y="120" width="76" height="7"/>
+<path d="M590 150 Q628 128 666 150 L666 158 Q628 136 590 158 Z"/>
+<rect x="496" y="150" width="64" height="8"/><rect x="696" y="150" width="70" height="8"/>
+<rect x="568" y="100" width="14" height="12" fill="#ffe6b8" opacity=".8"/><rect x="674" y="100" width="14" height="12" fill="#ffe6b8" opacity=".8"/>
+</g>
+<rect y="172" width="800" height="28" fill="url(#lonWater)"/>
+<g stroke="#8fa3cc" stroke-width="1.5" opacity=".3"><line x1="90" y1="180" x2="150" y2="180"/><line x1="300" y1="186" x2="360" y2="186"/><line x1="560" y1="180" x2="620" y2="180"/><line x1="650" y1="192" x2="700" y2="192"/><line x1="200" y1="192" x2="250" y2="192"/></g>
+</svg>
+<span class="ch-label">London</span><span class="ch-sub">6 AREAS · AUG 17–24</span>
+</div>
+</div>
 <details data-city="london"><summary>Westminster / South Bank</summary><div class="inside"><div class="area-list">
 <div class="area-item"><b>London Eye</b><span class="status status-confirmed">Confirmed</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=The+London+Eye+London">Map</a></div>
-<div class="area-item"><b>Big Ben</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Big+Ben+London">Map</a></div>
-<div class="area-item"><b>Houses of Parliament</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Houses+of+Parliament+London">Map</a></div>
-<div class="area-item"><b>Westminster Abbey (exterior)</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Westminster+Abbey+London">Map</a></div>
-<div class="area-item"><b>Churchill War Rooms</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Churchill+War+Rooms+London">Map</a></div>
-<div class="area-item"><b>St James's Park</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=St+James%27s+Park+London">Map</a></div>
-<div class="area-item"><b>Buckingham Palace (exterior)</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Buckingham+Palace+London">Map</a></div>
-<div class="area-item"><b>South Bank</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=South+Bank+London">Map</a></div>
-<div class="area-item"><b>Westminster Bridge</b><span class="small">★ 4.6</span><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Westminster+Bridge+London">Map</a></div>
+<div class="area-item"><b>Big Ben</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Big+Ben+London">Map</a></div>
+<div class="area-item"><b>Houses of Parliament</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Houses+of+Parliament+London">Map</a></div>
+<div class="area-item"><b>Westminster Abbey (exterior)</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Westminster+Abbey+London">Map</a></div>
+<div class="area-item"><b>Churchill War Rooms</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Churchill+War+Rooms+London">Map</a></div>
+<div class="area-item"><b>St James's Park</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=St+James%27s+Park+London">Map</a></div>
+<div class="area-item"><b>Buckingham Palace (exterior)</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Buckingham+Palace+London">Map</a></div>
+<div class="area-item"><b>South Bank</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=South+Bank+London">Map</a></div>
+<div class="area-item"><b>Westminster Bridge</b><span class="small">★ 4.6</span><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Westminster+Bridge+London">Map</a></div>
 </div></div></details>
 <details data-city="london"><summary>Bloomsbury / Covent Garden / Soho</summary><div class="inside"><div class="area-list">
-<div class="area-item"><b>The British Museum</b><span class="small">★ 4.2</span><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=The+British+Museum+London">Map</a></div>
-<div class="area-item"><b>Covent Garden</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Covent+Garden+London">Map</a></div>
-<div class="area-item"><b>National Gallery</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=National+Gallery+London">Map</a></div>
-<div class="area-item"><b>Trafalgar Square</b><span class="small">★ 4.6</span><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Trafalgar+Square+London">Map</a></div>
-<div class="area-item"><b>Leicester Square</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Leicester+Square+London">Map</a></div>
-<div class="area-item"><b>Soho</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Soho+London">Map</a></div>
-<div class="area-item"><b>JELLYCAT Store, Selfridges</b><span class="small">★ 4.2</span><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Selfridges+London">Map</a></div>
+<div class="area-item"><b>The British Museum</b><span class="small">★ 4.2</span><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=The+British+Museum+London">Map</a></div>
+<div class="area-item"><b>Covent Garden</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Covent+Garden+London">Map</a></div>
+<div class="area-item"><b>National Gallery</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=National+Gallery+London">Map</a></div>
+<div class="area-item"><b>Trafalgar Square</b><span class="small">★ 4.6</span><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Trafalgar+Square+London">Map</a></div>
+<div class="area-item"><b>Leicester Square</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Leicester+Square+London">Map</a></div>
+<div class="area-item"><b>Soho</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Soho+London">Map</a></div>
+<div class="area-item"><b>JELLYCAT Store, Selfridges</b><span class="small">★ 4.2</span><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Selfridges+London">Map</a></div>
+<div class="area-item"><b>Seven Dials / Neal's Yard</b><span class="status status-suggested">💡 Suggestion</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Neal%27s+Yard+Covent+Garden+London">Map</a></div>
+<div class="area-item"><b>West End theatrical show</b><span class="status status-advance">Advance booking</span><span class="cost-tag">Paid</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=West+End+theatre+London">Map</a></div>
 </div>
 <div class="food-row"><div class="lbl">🍽️ Food nearby</div><div class="food-chips">
 <a class="food-chip" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Italian+Bear+London">Italian Bear</a>
@@ -364,25 +514,31 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 </div></div>
 </div></details>
 <details data-city="london"><summary>South Kensington / Knightsbridge</summary><div class="inside"><div class="area-list">
-<div class="area-item"><b>Victoria &amp; Albert Museum</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Victoria+and+Albert+Museum+London">Map</a></div>
-<div class="area-item"><b>Natural History Museum</b><span class="small">★ 4.6</span><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Natural+History+Museum+London">Map</a></div>
-<div class="area-item"><b>Hyde Park</b><span class="small">★ 4.7</span><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hyde+Park+London">Map</a></div>
-<div class="area-item"><b>Harrods</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Harrods+London">Map</a></div>
+<div class="area-item"><b>Victoria &amp; Albert Museum</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Victoria+and+Albert+Museum+London">Map</a></div>
+<div class="area-item"><b>Natural History Museum</b><span class="small">★ 4.6</span><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Natural+History+Museum+London">Map</a></div>
+<div class="area-item"><b>Hyde Park</b><span class="small">★ 4.7</span><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hyde+Park+London">Map</a></div>
+<div class="area-item"><b>Harrods</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Harrods+London">Map</a></div>
+<div class="area-item"><b>Schiaparelli exhibition</b><span class="status status-advance">Advance booking</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Victoria+and+Albert+Museum+London">Map</a></div>
+<div class="area-item"><b>Our Story with David Attenborough</b><span class="status status-advance">Advance booking</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Natural+History+Museum+London">Map</a></div>
 </div>
 <div class="food-row"><div class="lbl">🍽️ Food nearby</div><div class="food-chips">
 <a class="food-chip" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Chet%27s+Thai+London">Chet's</a>
 </div></div>
 </div></details>
-<details data-city="london"><summary>City / Southwark</summary><div class="inside"><div class="area-list">
-<div class="area-item"><b>Sky Garden</b><span class="status status-pending">Pending availability</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sky+Garden+London">Map</a></div>
-<div class="area-item"><b>Tate Modern</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Tate+Modern+London">Map</a></div>
-<div class="area-item"><b>Borough Market</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Borough+Market+London">Map</a></div>
-<div class="area-item"><b>Millennium Bridge</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Millennium+Bridge+London">Map</a></div>
-<div class="area-item"><b>St Paul's Cathedral (exterior)</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=St+Paul%27s+Cathedral+London">Map</a></div>
-<div class="area-item"><b>The View from The Shard</b><span class="small">★ 4.6</span><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=The+View+from+The+Shard+London">Map</a></div>
-<div class="area-item"><b>London Bridge</b><span class="small">★ 4.6</span><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=London+Bridge">Map</a></div>
-<div class="area-item"><b>Tower Bridge area</b><span class="small">★ 4.8</span><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Tower+Bridge+London">Map</a></div>
-<div class="area-item"><b>Tower of London</b><span class="small">★ 4.7</span><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Tower+of+London">Map</a></div>
+<details open data-city="london"><summary>City / Tower / Southwark</summary><div class="inside"><div class="area-list">
+<div class="area-item"><b>Horizon 22</b><span class="small">Fri, Aug 21 • 12:00 PM</span><span class="status status-freebooked">Free-booked</span><span class="cost-tag">Free</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Horizon+22+Sky+Garden+Bishopsgate+London">Map</a></div>
+<div class="area-item"><b>Sky Garden</b><span class="small">Free reservation preferred</span><span class="status status-priority">Priority</span><span class="cost-tag">Free</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sky+Garden+London">Map</a>
+<div class="item-warning">Backup: a ~£11.50 early-morning slot exists but is NOT booked — try free tickets first.</div></div>
+<div class="area-item"><b>Tower Bridge area</b><span class="small">★ 4.8</span><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Tower+Bridge+London">Map</a></div>
+<div class="area-item"><b>Tower of London</b><span class="small">★ 4.7 · exterior</span><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Tower+of+London">Map</a></div>
+<div class="area-item"><b>Borough Market</b><span class="status status-optional">Potential</span><span class="cost-tag">High interest</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Borough+Market+London">Map</a></div>
+<div class="area-item"><b>The Shard</b><span class="small">★ 4.6 · exterior/area, not the paid deck</span><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=The+Shard+London">Map</a></div>
+<div class="area-item"><b>Leadenhall Market</b><span class="status status-suggested">💡 Suggestion</span><span class="cost-tag">Free</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Leadenhall+Market+London">Map</a></div>
+<div class="area-item"><b>St Dunstan in the East</b><span class="status status-suggested">💡 Suggestion</span><span class="cost-tag">Free</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=St+Dunstan+in+the+East+London">Map</a></div>
+<div class="area-item"><b>Tate Modern</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Tate+Modern+London">Map</a></div>
+<div class="area-item"><b>Millennium Bridge</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Millennium+Bridge+London">Map</a></div>
+<div class="area-item"><b>St Paul's Cathedral (exterior)</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=St+Paul%27s+Cathedral+London">Map</a></div>
+<div class="area-item"><b>London Bridge</b><span class="small">★ 4.6</span><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=London+Bridge">Map</a></div>
 </div>
 <div class="food-row"><div class="lbl">🍽️ Food nearby</div><div class="food-chips">
 <a class="food-chip" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Padella+Borough+Market+London">Padella (Borough Market)</a>
@@ -394,83 +550,191 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 </div></div>
 </div></details>
 <details data-city="london"><summary>Camden</summary><div class="inside"><div class="area-list">
-<div class="area-item"><b>Mission: Breakout</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Mission+Breakout+Camden+London">Map</a></div>
-<div class="area-item"><b>Camden Market</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Camden+Market+London">Map</a></div>
+<div class="area-item"><b>Mission: Breakout — The Lost Passenger</b><span class="status status-advance">Advance booking</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Mission+Breakout+Camden+London">Map</a></div>
+<div class="area-item"><b>Camden Market</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Camden+Market+London">Map</a></div>
 </div></div></details>
 <details data-city="london"><summary>West London / Windsor / Slough</summary><div class="inside"><div class="area-list">
 <div class="area-item"><b>Southall / Broadway area</b><span class="small">Aug 18</span><span class="status status-confirmed">Confirmed</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Southall+Broadway+London">Map</a></div>
 <div class="area-item"><b>Baylis House, Slough</b><span class="small">Aug 20 • Jaggo</span><span class="status status-confirmed">Confirmed</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Baylis+House+Stoke+Poges+Lane+Slough">Map</a></div>
-<div class="area-item"><b>Windsor Castle</b><span class="small">★ 4.7</span><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Windsor+Castle">Map</a></div>
+<div class="area-item"><b>Windsor Castle</b><span class="small">★ 4.7</span><span class="status status-advance">Advance booking</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Windsor+Castle">Map</a></div>
+<div class="area-item"><b>Venus Garden at Windsor</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Windsor+Great+Park">Map</a></div>
+<div class="area-item"><b>Conquer the Tower (Round Tower)</b><span class="status status-optional">Optional add-on</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Round+Tower+Windsor+Castle">Map</a></div>
 </div></div></details>
 
-<div class="city-heading" data-city-group="barcelona">🇪🇸 Barcelona</div>
+<div class="city-heading" data-city-group="barcelona">
+<div class="city-hero">
+<svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of the Barcelona skyline with the Sagrada Familia at sunset">
+<defs>
+<linearGradient id="bcnSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b3f6b"/><stop offset=".42" stop-color="#8d5f86"/><stop offset=".72" stop-color="#e08a63"/><stop offset="1" stop-color="#f6c07a"/></linearGradient>
+<linearGradient id="bcnSpire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5d4a63"/><stop offset="1" stop-color="#33283f"/></linearGradient>
+<linearGradient id="bcnGround" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2c42"/><stop offset="1" stop-color="#241b2c"/></linearGradient>
+</defs>
+<rect width="800" height="200" fill="url(#bcnSky)"/>
+<circle cx="150" cy="146" r="30" fill="#ffd89a" opacity=".95"/>
+<g fill="#4a3a55" opacity=".38">
+<rect x="18" y="140" width="30" height="34"/><rect x="56" y="148" width="22" height="26"/><rect x="86" y="144" width="26" height="30"/>
+<rect x="700" y="142" width="28" height="32"/><rect x="736" y="150" width="22" height="24"/><rect x="766" y="146" width="24" height="28"/>
+</g>
+<g fill="url(#bcnSpire)">
+<path d="M356 174 L356 92 Q361 58 366 92 L366 174 Z"/><circle cx="361" cy="60" r="4.5" fill="#f3d59b"/>
+<path d="M386 174 L386 66 Q392 24 398 66 L398 174 Z"/><circle cx="392" cy="26" r="5" fill="#f3d59b"/>
+<path d="M418 174 L418 78 Q424 42 430 78 L430 174 Z"/><circle cx="424" cy="44" r="4.5" fill="#f3d59b"/>
+<path d="M450 174 L450 96 Q455 62 460 96 L460 174 Z"/><circle cx="455" cy="64" r="4" fill="#f3d59b"/>
+<rect x="348" y="128" width="120" height="46"/>
+</g>
+<g fill="#f0c98a" opacity=".55">
+<rect x="359" y="104" width="5" height="12" rx="2.5"/><rect x="390" y="80" width="5" height="12" rx="2.5"/><rect x="422" y="92" width="5" height="12" rx="2.5"/><rect x="453" y="108" width="5" height="12" rx="2.5"/>
+<rect x="360" y="140" width="9" height="20" rx="4.5"/><rect x="384" y="140" width="9" height="20" rx="4.5"/><rect x="408" y="140" width="9" height="20" rx="4.5"/><rect x="432" y="140" width="9" height="20" rx="4.5"/><rect x="452" y="140" width="9" height="20" rx="4.5"/>
+</g>
+<g fill="#3d2f47">
+<path d="M540 174 L540 118 Q548 104 560 110 Q574 100 586 112 Q598 106 604 120 L604 174 Z"/>
+<g fill="#f0c98a" opacity=".5"><circle cx="556" cy="132" r="4"/><circle cx="574" cy="128" r="4"/><circle cx="592" cy="134" r="4"/><circle cx="556" cy="152" r="4"/><circle cx="574" cy="150" r="4"/><circle cx="592" cy="154" r="4"/></g>
+</g>
+<g fill="#2e2338">
+<rect x="232" y="140" width="6" height="34"/>
+<path d="M235 142 Q214 132 206 118 Q224 126 235 138 Z"/><path d="M235 142 Q256 132 264 118 Q246 126 235 138 Z"/>
+<path d="M235 140 Q222 124 220 106 Q234 120 237 138 Z"/><path d="M235 140 Q248 124 250 106 Q236 120 233 138 Z"/>
+<rect x="664" y="146" width="5" height="28"/>
+<path d="M666 148 Q650 140 644 128 Q658 134 666 144 Z"/><path d="M666 148 Q682 140 688 128 Q674 134 666 144 Z"/><path d="M666 146 Q657 132 656 118 Q666 130 668 144 Z"/>
+</g>
+<rect y="174" width="800" height="26" fill="url(#bcnGround)"/>
+<g stroke="#c99a72" stroke-width="1.2" opacity=".28"><line x1="0" y1="182" x2="800" y2="182"/></g>
+</svg>
+<span class="ch-label">Barcelona</span><span class="ch-sub">5 AREAS · AUG 24–27</span>
+</div>
+</div>
 <details data-city="barcelona"><summary>Eixample / Passeig de Gràcia</summary><div class="inside"><div class="area-list">
 <div class="area-item"><b>Your hotel: Roger de Llúria</b><span class="small">Aug 24–27</span><span class="status status-confirmed">Confirmed</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+Roger+de+Lluria+Barcelona">Map</a></div>
-<div class="area-item"><b>Casa Batlló (exterior)</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Casa+Batllo+Barcelona">Map</a></div>
-<div class="area-item"><b>Casa Milà / La Pedrera (exterior)</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Casa+Mila+La+Pedrera+Barcelona">Map</a></div>
+<div class="area-item"><b>Casa Batlló (exterior)</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Casa+Batllo+Barcelona">Map</a></div>
+<div class="area-item"><b>Casa Milà / La Pedrera (exterior)</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Casa+Mila+La+Pedrera+Barcelona">Map</a></div>
+<div class="area-item"><b>Plaça de Catalunya</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Placa+de+Catalunya+Barcelona">Map</a></div>
 </div></div></details>
 <details data-city="barcelona"><summary>Old City</summary><div class="inside"><div class="area-list">
-<div class="area-item"><b>La Boqueria</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=La+Boqueria+Barcelona">Map</a></div>
-<div class="area-item"><b>La Rambla</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=La+Rambla+Barcelona">Map</a></div>
-<div class="area-item"><b>Gothic Quarter</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Gothic+Quarter+Barcelona">Map</a></div>
-<div class="area-item"><b>Picasso Museum</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Picasso+Museum+Barcelona">Map</a></div>
-<div class="area-item"><b>El Born</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=El+Born+Barcelona">Map</a></div>
-<div class="area-item"><b>Analogin Photobooth</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Analogin+Photobooth+Barcelona">Map</a></div>
+<div class="area-item"><b>La Boqueria</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=La+Boqueria+Barcelona">Map</a></div>
+<div class="area-item"><b>La Rambla</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=La+Rambla+Barcelona">Map</a></div>
+<div class="area-item"><b>Gothic Quarter</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Gothic+Quarter+Barcelona">Map</a></div>
+<div class="area-item"><b>Picasso Museum</b><span class="status status-advance">Advance booking</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Picasso+Museum+Barcelona">Map</a></div>
+<div class="area-item"><b>El Born</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=El+Born+Barcelona">Map</a></div>
+<div class="area-item"><b>Analogin Photobooth</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Analogin+Photobooth+Barcelona">Map</a></div>
+<div class="area-item"><b>Arc de Triomf</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Arc+de+Triomf+Barcelona">Map</a></div>
+<div class="area-item"><b>Parc de la Ciutadella</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Parc+de+la+Ciutadella+Barcelona">Map</a></div>
+<div class="area-item"><b>Tablao Flamenco Cordobés</b><span class="small">Evening cultural option</span><span class="status status-advance">Advance booking</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Tablao+Flamenco+Cordobes+Barcelona">Map</a></div>
 </div>
 <div class="food-row"><div class="lbl">🍽️ Food nearby</div><div class="food-chips">
 <a class="food-chip" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Brunch+%26+Cake+Barcelona">Brunch &amp; Cake</a>
+<a class="food-chip" target="_blank" href="https://www.google.com/maps/search/?api=1&query=BoBa+Zoo+Barcelona">BoBa Zoo</a>
 </div></div>
 </div></details>
 <details data-city="barcelona"><summary>Montjuïc</summary><div class="inside"><div class="area-list">
-<div class="area-item"><b>Montjuïc</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Montjuic+Barcelona">Map</a></div>
-<div class="area-item"><b>Cable Car</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Montjuic+Cable+Car+Barcelona">Map</a></div>
-<div class="area-item"><b>Mirador de l'Alcalde</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Mirador+de+l%27Alcalde+Barcelona">Map</a></div>
+<div class="area-item"><b>Montjuïc</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Montjuic+Barcelona">Map</a></div>
+<div class="area-item"><b>Cable Car</b><span class="status status-optional">Optional</span><span class="cost-tag">Paid</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Montjuic+Cable+Car+Barcelona">Map</a></div>
+<div class="area-item"><b>Mirador de l'Alcalde</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Mirador+de+l%27Alcalde+Barcelona">Map</a></div>
+<div class="area-item"><b>Olympic Ring / Estadi Olímpic</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Estadi+Olimpic+Lluis+Companys+Barcelona">Map</a></div>
 </div></div></details>
 <details open data-city="barcelona"><summary>Sagrada / Gràcia</summary><div class="inside"><div class="area-list">
-<div class="area-item"><b>Sagrada Família</b><span class="small">Aug 25 • 9:45 AM</span><span class="status status-confirmed">Confirmed</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sagrada+Familia+Barcelona">Map</a></div>
-<div class="area-item"><b>Park Güell</b><span class="small">Target Aug 26</span><span class="status status-planned">Planned</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Park+Guell+Barcelona">Map</a></div>
-<div class="area-item"><b>Gràcia / Plaça del Sol</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Placa+del+Sol+Gracia+Barcelona">Map</a></div>
+<div class="area-item"><b>Sagrada Família</b><span class="small">Aug 25 • 9:45 AM</span><span class="status status-booked">Booked</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sagrada+Familia+Barcelona">Map</a></div>
+<div class="area-item"><b>Park Güell</b><span class="small">Target Aug 26</span><span class="status status-priority">Priority</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Park+Guell+Barcelona">Map</a>
+<div class="item-warning">Advance reservation required/recommended if kept.</div></div>
+<div class="area-item"><b>Gràcia / Plaça del Sol</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Placa+del+Sol+Gracia+Barcelona">Map</a></div>
 </div>
 <div class="food-row"><div class="lbl">🍽️ Food nearby</div><div class="food-chips">
 <a class="food-chip" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sercotel+Rossellon+Rooftop+Barcelona">Sercotel Rosellón rooftop</a>
 </div></div>
 </div></details>
-<details data-city="barcelona"><summary>Day trip</summary><div class="inside"><div class="area-list">
-<div class="area-item"><b>Montserrat</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Montserrat+Barcelona">Map</a></div>
-</div></div></details>
+<div class="decision-card" data-area="Day trip" data-city="barcelona">
+<h3>🏔️ Montserrat — day-trip trade-off</h3>
+<p>Montserrat is outside Barcelona and consumes a substantial sightseeing block. Choosing it means reducing Barcelona city sightseeing.</p>
+<div class="area-item" style="border:0;padding:0"><b>Montserrat</b><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Montserrat+Barcelona">Map</a></div>
+</div>
 
-<div class="city-heading" data-city-group="lisbon">🇵🇹 Lisbon</div>
-<details data-city="lisbon"><summary>Baixa / Chiado</summary><div class="inside"><div class="area-list">
-<div class="area-item"><b>Praça do Comércio</b><span class="small">★ 4.7</span><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Praca+do+Comercio+Lisbon">Map</a></div>
-<div class="area-item"><b>Baixa</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Baixa+Lisbon">Map</a></div>
-<div class="area-item"><b>Chiado</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Chiado+Lisbon">Map</a></div>
-<div class="area-item"><b>Carmo area</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Carmo+Convent+Lisbon">Map</a></div>
+<div class="city-heading" data-city-group="lisbon">
+<div class="city-hero">
+<svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of Lisbon with the Belem Tower and hillside houses at golden hour">
+<defs>
+<linearGradient id="lisSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f4d72"/><stop offset=".4" stop-color="#7d8fa8"/><stop offset=".72" stop-color="#e7a878"/><stop offset="1" stop-color="#f8d69c"/></linearGradient>
+<linearGradient id="lisWater" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a6a8c"/><stop offset="1" stop-color="#22364f"/></linearGradient>
+<linearGradient id="lisHill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b5a5e"/><stop offset="1" stop-color="#443a41"/></linearGradient>
+</defs>
+<rect width="800" height="200" fill="url(#lisSky)"/>
+<circle cx="690" cy="142" r="27" fill="#ffdca6" opacity=".95"/>
+<path d="M0 150 Q60 120 130 132 Q198 144 250 150 Q288 155 312 176 L0 176 Z" fill="url(#lisHill)" opacity=".75"/>
+<g fill="#4e4148" opacity=".9">
+<rect x="24" y="128" width="26" height="26"/><polygon points="22,128 37,118 52,128" fill="#a5563d"/>
+<rect x="60" y="134" width="22" height="22"/><polygon points="58,134 71,125 84,134" fill="#a5563d"/>
+<rect x="96" y="126" width="24" height="26"/><polygon points="94,126 108,116 122,126" fill="#a5563d"/>
+<rect x="132" y="134" width="22" height="22"/><polygon points="130,134 143,125 156,134" fill="#a5563d"/>
+<rect x="170" y="130" width="24" height="24"/><polygon points="168,130 182,120 196,130" fill="#a5563d"/>
+<rect x="206" y="136" width="20" height="20"/><polygon points="204,136 216,127 228,136" fill="#a5563d"/>
+</g>
+<g fill="#f2c98e" opacity=".45"><rect x="31" y="136" width="5" height="8"/><rect x="67" y="141" width="5" height="8"/><rect x="104" y="134" width="5" height="8"/><rect x="139" y="141" width="5" height="8"/><rect x="177" y="138" width="5" height="8"/></g>
+<g fill="#3f3239">
+<rect x="330" y="106" width="42" height="68"/>
+<rect x="326" y="98" width="50" height="10"/>
+<g fill="#3f3239"><rect x="328" y="88" width="8" height="12"/><rect x="344" y="88" width="8" height="12"/><rect x="360" y="88" width="8" height="12"/></g>
+<rect x="372" y="132" width="40" height="42"/><rect x="368" y="126" width="48" height="8"/>
+<g fill="#f2c98e" opacity=".5"><rect x="344" y="120" width="8" height="14" rx="4"/><rect x="344" y="146" width="8" height="14" rx="4"/><rect x="386" y="146" width="8" height="12" rx="4"/></g>
+<rect x="318" y="168" width="104" height="8"/>
+</g>
+<g stroke="#b4462f" stroke-width="4" fill="none">
+<line x1="500" y1="70" x2="500" y2="168"/><line x1="640" y1="70" x2="640" y2="168"/>
+<path d="M500 82 Q570 140 640 82" stroke-width="3"/>
+<line x1="460" y1="118" x2="500" y2="82" stroke-width="2.5"/><line x1="640" y1="82" x2="690" y2="118" stroke-width="2.5"/>
+</g>
+<g stroke="#b4462f" stroke-width="1.2" opacity=".75">
+<line x1="520" y1="98" x2="520" y2="130"/><line x1="545" y1="112" x2="545" y2="130"/><line x1="570" y1="119" x2="570" y2="130"/><line x1="595" y1="112" x2="595" y2="130"/><line x1="620" y1="98" x2="620" y2="130"/>
+</g>
+<rect x="452" y="130" width="248" height="6" fill="#8f3826"/>
+<g fill="#e8c07c"><rect x="496" y="88" width="8" height="8"/><rect x="636" y="88" width="8" height="8"/></g>
+<rect y="176" width="800" height="24" fill="url(#lisWater)"/>
+<g stroke="#9db6cf" stroke-width="1.5" opacity=".3"><line x1="330" y1="184" x2="400" y2="184"/><line x1="500" y1="190" x2="570" y2="190"/><line x1="620" y1="184" x2="680" y2="184"/><line x1="120" y1="190" x2="180" y2="190"/></g>
+</svg>
+<span class="ch-label">Lisbon</span><span class="ch-sub">4 AREAS · AUG 27–30</span>
+</div>
+</div>
+<details open data-city="lisbon"><summary>Baixa / Chiado / Cais do Sodré</summary><div class="inside"><div class="area-list">
+<div class="area-item"><b>Landeau Chocolate</b><span class="small">Chocolate cake</span><span class="status status-mustgo">Must-go</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Landeau+Chocolate+Lisbon">Map</a></div>
+<div class="area-item"><b>Time Out Market Lisboa</b><span class="status status-priority">Priority</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Time+Out+Market+Lisbon">Map</a></div>
+<div class="area-item"><b>Praça do Comércio</b><span class="small">★ 4.7</span><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Praca+do+Comercio+Lisbon">Map</a></div>
+<div class="area-item"><b>Baixa</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Baixa+Lisbon">Map</a></div>
+<div class="area-item"><b>Chiado</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Chiado+Lisbon">Map</a></div>
+<div class="area-item"><b>Carmo area</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Carmo+Convent+Lisbon">Map</a></div>
+<div class="area-item"><b>Pink Street</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Pink+Street+Lisbon">Map</a></div>
+<div class="area-item"><b>Miradouro de Santa Catarina</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Miradouro+de+Santa+Catarina+Lisbon">Map</a></div>
+<div class="area-item"><b>Elevador de Santa Justa (exterior)</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Elevador+de+Santa+Justa+Lisbon">Map</a></div>
+<div class="area-item"><b>Miradouro de São Pedro de Alcântara</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Miradouro+de+Sao+Pedro+de+Alcantara+Lisbon">Map</a></div>
 </div>
 <div class="food-row"><div class="lbl">🍽️ Food nearby</div><div class="food-chips">
-<a class="food-chip" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Time+Out+Market+Lisbon">Time Out Market</a>
 <a class="food-chip" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Bonjardim+Lisbon">Bonjardim ★ 4.1</a>
 </div></div>
 </div></details>
-<details open data-city="lisbon"><summary>Belém</summary><div class="inside"><div class="area-list">
-<div class="area-item"><b>Belém area day</b><span class="small">Aug 28</span><span class="status status-planned">Planned</span></div>
-<div class="area-item"><b>Jerónimos Monastery</b><span class="small">★ 4.4</span><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Jeronimos+Monastery+Lisbon">Map</a></div>
-<div class="area-item"><b>Belém Tower (exterior)</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Belem+Tower+Lisbon">Map</a></div>
-<div class="area-item"><b>Monument to the Discoveries</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Monument+to+the+Discoveries+Lisbon">Map</a></div>
+<details data-city="lisbon"><summary>Alfama</summary><div class="inside"><div class="area-list">
+<div class="area-item"><b>Lisbon Cathedral / Sé</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Lisbon+Cathedral+Se">Map</a></div>
+<div class="area-item"><b>Miradouro de Santa Luzia</b><span class="status status-optional">Potential, free</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Miradouro+de+Santa+Luzia+Lisbon">Map</a></div>
+<div class="area-item"><b>Castelo de São Jorge</b><span class="small">★ 4.5</span><span class="status status-optional">Potential</span><span class="cost-tag">Paid</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Castelo+de+Sao+Jorge+Lisbon">Map</a>
+<div class="item-warning">Advance booking recommended if selected.</div></div>
+<div class="area-item"><b>Miradouro da Senhora do Monte</b><span class="status status-suggested">💡 Suggestion</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Miradouro+da+Senhora+do+Monte+Lisbon">Map</a></div>
+<div class="area-item"><b>Clube de Fado</b><span class="small">Preferred evening cultural option</span><span class="status status-advance">Advance booking</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Clube+de+Fado+Lisbon">Map</a></div>
+</div></div></details>
+<div class="decision-card" data-area="Belém" data-city="lisbon">
+<h3>🗼 Belém — unscheduled decision cluster</h3>
+<p>Belém's attractions are tightly grouped geographically. The issue is finding a time block without sacrificing Alfama or Sintra — it does not currently have a fixed day.</p>
+<div class="area-list">
+<div class="area-item"><b>Jerónimos Monastery</b><span class="small">★ 4.4</span><span class="status status-advance">Advance booking</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Jeronimos+Monastery+Lisbon">Map</a></div>
+<div class="area-item"><b>Belém Tower (exterior)</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Belem+Tower+Lisbon">Map</a></div>
+<div class="area-item"><b>Monument to the Discoveries</b><span class="small">Exterior</span><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Monument+to+the+Discoveries+Lisbon">Map</a></div>
+<div class="area-item"><b>MAAT (exterior)</b><span class="status status-suggested">💡 Suggestion</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=MAAT+Lisbon">Map</a></div>
 </div>
 <div class="food-row"><div class="lbl">🍽️ Food nearby</div><div class="food-chips">
 <a class="food-chip" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Pasteis+de+Belem+Lisbon">Pastéis de Belém ★ 4.6</a>
 </div></div>
-</div></details>
-<details data-city="lisbon"><summary>Alfama</summary><div class="inside"><div class="area-list">
-<div class="area-item"><b>Lisbon Cathedral / Sé</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Lisbon+Cathedral+Se">Map</a></div>
-<div class="area-item"><b>Miradouro de Santa Luzia</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Miradouro+de+Santa+Luzia+Lisbon">Map</a></div>
-<div class="area-item"><b>Castelo de São Jorge</b><span class="small">★ 4.5</span><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Castelo+de+Sao+Jorge+Lisbon">Map</a></div>
-<div class="area-item"><b>Clube de Fado</b><span class="status status-food">Food option</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Clube+de+Fado+Lisbon">Map</a></div>
-</div></div></details>
+</div>
 <details open data-city="lisbon"><summary>Sintra</summary><div class="inside"><div class="area-list">
-<div class="area-item"><b>Pena Palace + Park</b><span class="small">Likely Aug 29</span><span class="status status-planned">Planned</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Pena+Palace+Sintra">Map</a></div>
-<div class="area-item"><b>Sintra Historic Centre</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sintra+Historic+Centre">Map</a></div>
-<div class="area-item"><b>Quinta da Regaleira</b><span class="status status-optional">Optional</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Quinta+da+Regaleira+Sintra">Map</a></div>
+<div class="area-item"><b>Pena Palace + Park</b><span class="small">Likely Aug 29</span><span class="status status-priority">Priority</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Pena+Palace+Sintra">Map</a>
+<div class="item-warning">Advance booking recommended if kept.</div></div>
+<div class="area-item"><b>Quinta da Regaleira</b><span class="status status-priority">Priority</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Quinta+da+Regaleira+Sintra">Map</a>
+<div class="item-warning">Advance booking recommended if kept.</div></div>
+<div class="area-item"><b>Sintra Historic Centre</b><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sintra+Historic+Centre">Map</a></div>
+<div class="area-item"><b>Sintra National Palace (exterior)</b><span class="status status-suggested">💡 Suggestion</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sintra+National+Palace">Map</a></div>
 </div></div></details>
 
 <div class="zone-divider"><span class="zlabel">📋 Reference</span><span class="zline"></span></div>
@@ -498,6 +762,13 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;
 
 <h2 class="section-title" id="todo">✅ Before We Go</h2>
 <section class="card" id="checklist"></section>
+
+<h2 class="section-title" id="saved">🔖 Saved Views</h2>
+<section class="card">
+<div class="small" style="margin-bottom:6px">Each view below is its own link. Copy one and save it as a <b>Safari bookmark</b> to jump straight to that altitude in a single tap — handy for keeping "flights at a glance" and "today's area" one tap apart.</div>
+<div class="notice" style="margin:12px 0">Use regular <b>Safari bookmarks</b> for these, not Add to Home Screen. The home-screen icon always launches the app at the top, so it can't hold a specific view — bookmarks keep the exact spot.</div>
+<div id="savedViews"></div>
+</section>
 
 <section class="card">
 <span class="badge">PUBLIC-SAFE</span>
@@ -548,22 +819,48 @@ const cities=[
 {id:"barcelona",lat:41.3874,lon:2.1686,start:"2026-08-24",end:"2026-08-27"},
 {id:"lisbon",lat:38.7223,lon:-9.1393,start:"2026-08-27",end:"2026-08-30"}];
 
+// WMO weather codes → icon + plain-language label
+function wxLook(code){
+if(code===0)return{i:"☀️",t:"Clear"};
+if(code===1)return{i:"🌤️",t:"Mostly clear"};
+if(code===2)return{i:"⛅",t:"Partly cloudy"};
+if(code===3)return{i:"☁️",t:"Overcast"};
+if(code===45||code===48)return{i:"🌫️",t:"Fog"};
+if(code>=51&&code<=57)return{i:"🌦️",t:"Drizzle"};
+if(code>=61&&code<=67)return{i:"🌧️",t:"Rain"};
+if(code>=71&&code<=77)return{i:"🌨️",t:"Snow"};
+if(code>=80&&code<=82)return{i:"🌦️",t:"Showers"};
+if(code>=85&&code<=86)return{i:"🌨️",t:"Snow showers"};
+if(code>=95)return{i:"⛈️",t:"Thunderstorms"};
+return{i:"🌡️",t:"Mixed"}}
+
+function paintWeather(el,v,offline){
+const look=wxLook(v.code);
+el.querySelector(".weather-temp").textContent=`${v.lo}–${v.hi}°C`;
+const body=el.querySelector(".wx-body");
+body.innerHTML=`<div class="wx-cond"><span class="wx-ico">${look.i}</span><span>${look.t}</span></div>
+<div class="wx-meta"><span>💧 up to ${v.rn}% rain</span><span>📅 ${v.days} trip day${v.days===1?"":"s"}</span>${offline?'<span>⚠️ last known</span>':""}</div>`}
+
 async function loadWeather(city){
 const el=document.getElementById("weather-"+city.id),cacheKey="wx-"+city.id;
 try{
-const u=`https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=16`;
+const u=`https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weather_code&timezone=auto&forecast_days=16`;
 const r=await fetch(u),d=await r.json(),dates=d.daily?.time||[];
 const idx=dates.map((x,i)=>({x,i})).filter(o=>o.x>=city.start&&o.x<=city.end&&d.daily.temperature_2m_max[o.i]!=null&&d.daily.temperature_2m_min[o.i]!=null);
-if(!idx.length){el.querySelector(".weather-temp").textContent="Forecast pending";el.insertAdjacentHTML("beforeend","<div class='small'>Not yet in live forecast range.</div>");return}
+if(!idx.length){const t=el.querySelector(".weather-temp");t.textContent="Forecast pending";t.classList.add("muted");el.querySelector(".wx-body").innerHTML="<div class='small'>Not yet in the 16-day live forecast window.</div>";return}
 const highs=idx.map(o=>d.daily.temperature_2m_max[o.i]),lows=idx.map(o=>d.daily.temperature_2m_min[o.i]),rain=idx.map(o=>d.daily.precipitation_probability_max[o.i]||0);
-const lo=Math.round(Math.min(...lows)),hi=Math.round(Math.max(...highs)),rn=Math.round(Math.max(...rain));
-localStorage.setItem(cacheKey,JSON.stringify({lo,hi,rn,days:idx.length}));
-el.querySelector(".weather-temp").textContent=`${lo}–${hi}°C`;
-el.insertAdjacentHTML("beforeend",`<div class='small'>Rain risk up to ${rn}% • ${idx.length} trip day${idx.length==1?"":"s"} in range.</div>`)
+const codes=idx.map(o=>d.daily.weather_code?.[o.i]).filter(c=>c!=null);
+// representative condition = most frequent code across the stay (typical day, not worst day)
+let code=null;
+if(codes.length){const tally={};codes.forEach(c=>tally[c]=(tally[c]||0)+1);
+code=+Object.keys(tally).reduce((a,b)=>tally[b]>tally[a]?b:a)}
+const v={lo:Math.round(Math.min(...lows)),hi:Math.round(Math.max(...highs)),rn:Math.round(Math.max(...rain)),days:idx.length,code};
+localStorage.setItem(cacheKey,JSON.stringify(v));
+paintWeather(el,v,false);
 }catch(e){
 const cached=JSON.parse(localStorage.getItem(cacheKey)||"null");
-if(cached){el.querySelector(".weather-temp").textContent=`${cached.lo}–${cached.hi}°C`;el.insertAdjacentHTML("beforeend",`<div class='small'>Offline • last known forecast • rain risk up to ${cached.rn}%</div>`)}
-else el.querySelector(".weather-temp").textContent="Unavailable offline"}}
+if(cached)paintWeather(el,cached,true);
+else{const t=el.querySelector(".weather-temp");t.textContent="Unavailable offline";t.classList.add("muted");el.querySelector(".wx-body").innerHTML="<div class='small'>No cached forecast yet — open this once with a connection to store one.</div>"}}}
 cities.forEach(loadWeather);
 
 // ---- Today focus card: dynamic — pulls in that day's flight, hotel move, and sights ----
@@ -585,22 +882,22 @@ const tripDays={
  sights:[]},
 "2026-08-17":{title:"Arrive London + London Eye",
  hotels:[{key:"parkPlaza",action:"checkin"}],
- sights:[{time:"8:00 PM",title:"🎡 London Eye",note:"2 travellers • standard tickets",status:"confirmed"}]},
+ sights:[{time:"8:00 PM",title:"🎡 London Eye",note:"2 travellers • standard tickets",status:"booked"}]},
 "2026-08-18":{title:"Wedding-week events",
  hotels:[{key:"parkPlaza",action:"staying"}],
  sights:[{time:"11:00 AM",title:"Maiyaan",note:"Southall",status:"scheduled"},{time:"1:00 PM",title:"Mehndi",status:"scheduled"},{time:"4:00 PM",title:"Ladies Sangeet",status:"scheduled"}]},
-"2026-08-19":{title:"Move hotels: Park Plaza → Premier Inn",
+"2026-08-19":{title:"Westminster → West End, then move hotels",
  hotels:[{key:"parkPlaza",action:"checkout"},{key:"premierInn",action:"checkin"}],
- sights:[{time:"Morning only",title:"Sky Garden fallback window",note:"Only if free tickets become available",status:"pending"}]},
+ sights:[{time:"Morning",title:"Westminster → West End sightseeing",note:"Buckingham Palace, St James's Park, Trafalgar Sq, Covent Garden, Soho, British Museum — then travel west to Hayes",status:"flexible"}]},
 "2026-08-20":{title:"Jaggo",
  hotels:[{key:"premierInn",action:"staying"}],
  sights:[{time:"6:30 PM",title:"Jaggo Party",note:"Baylis House, Slough",status:"scheduled"}]},
-"2026-08-21":{title:"Flexible London day",
+"2026-08-21":{title:"Horizon 22 + open London day",
  hotels:[{key:"premierInn",action:"staying"}],
- sights:[{time:"All day",title:"Sightseeing, shopping, food",status:"flexible"}]},
+ sights:[{time:"12:00 PM",title:"🏙️ Horizon 22",note:"Free-booked • 4 adults",status:"freebooked"},{time:"Rest of day",title:"Sightseeing, shopping, food",status:"flexible"}]},
 "2026-08-22":{title:"Anand Karaj",
  hotels:[{key:"premierInn",action:"staying"}],
- sights:[{time:"9:00 AM",title:"Be at the Gurdwara",note:"Gravesend",status:"scheduled"},{time:"9:30 AM",title:"Milni",status:"scheduled"},{time:"10:30 AM",title:"Anand Karaj",status:"scheduled"}]},
+ sights:[{time:"9:00 AM",title:"Barat",note:"Gravesend",status:"scheduled"},{time:"9:30 AM",title:"Milni",status:"scheduled"},{time:"10:30 AM",title:"Anand Karaj",status:"scheduled"}]},
 "2026-08-23":{title:"Reception",
  hotels:[{key:"premierInn",action:"staying"}],
  sights:[{time:"4:00 PM",title:"Reception",note:"Great Offley / Hitchin area",status:"scheduled"}]},
@@ -614,22 +911,36 @@ const tripDays={
 "2026-08-26":{title:"Barcelona sightseeing",
  hotels:[{key:"rogerLluria",action:"staying"}],
  sights:[{time:"Target 9:30 AM",title:"🌿 Park Güell",note:"Planned, not yet confirmed",status:"pending"}]},
-"2026-08-27":{title:"Barcelona → Lisbon",
+"2026-08-27":{title:"Barcelona → Lisbon: Baixa/Chiado",
  flight:{num:"TP 1031",airline:"TAP Air Portugal",from:{code:"BCN",label:""},to:{code:"LIS",label:""},dep:"11:25 AM",arr:"12:25 PM"},
  hotels:[{key:"rogerLluria",action:"checkout"},{key:"hillsLisboa",action:"checkin"}],
- sights:[]},
-"2026-08-28":{title:"Lisbon",
+ sights:[{time:"Evening",title:"Check-in + nearby dinner",note:"Landeau Chocolate and Time Out Market are close by if there's time",status:"flexible"}]},
+"2026-08-28":{title:"Alfama",
  hotels:[{key:"hillsLisboa",action:"staying"}],
- sights:[{time:"All day",title:"Belém / central Lisbon",note:"Boat experience optional",status:"flexible"}]},
-"2026-08-29":{title:"Lisbon / Sintra",
+ sights:[{time:"All day",title:"Sé → Santa Luzia → Alfama → Castelo de São Jorge",note:"Belém not scheduled this day — see the Belém decision cluster",status:"flexible"}]},
+"2026-08-29":{title:"Sintra day trip",
  hotels:[{key:"hillsLisboa",action:"staying"}],
- sights:[{time:"All day",title:"Sintra / Pena Palace",note:"Likely, not yet booked",status:"pending"}]},
+ sights:[{time:"All day",title:"Pena Palace + Quinta da Regaleira",note:"High-priority potential, not yet booked",status:"priority"}]},
 "2026-08-30":{title:"Return to Toronto",
  flight:{num:"TP 257",airline:"TAP Air Portugal",from:{code:"LIS",label:""},to:{code:"YYZ",label:""},dep:"10:40 AM",arr:"2:00 PM"},
  hotels:[{key:"hillsLisboa",action:"checkout"}],
  sights:[]}};
 
 function todayKey(){const n=new Date();return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,"0")}-${String(n.getDate()).padStart(2,"0")}`}
+
+// Full status vocabulary used across Today card, Confirmed Schedule, Booking Status and Explore by Area.
+// Locked/booked items never show Keep/Maybe/Skip controls — everything else does.
+const statusLabels={
+booked:"Booked",freebooked:"Free-booked",confirmed:"Booked",
+mustgo:"Must-go",priority:"Priority",
+advance:"Advance booking",
+planned:"Priority",
+potential:"Potential",optional:"Potential",
+pending:"Pending availability",
+suggested:"💡 Suggestion",
+food:"Food option",
+flexible:"Flexible",scheduled:"Scheduled"};
+const lockedStatuses=new Set(["booked","freebooked","confirmed","scheduled"]);
 
 const hotelActionLabel={checkin:"Checking in today",checkout:"Checking out today",staying:"Staying here tonight"};
 const hotelActionTag={checkin:"tag-checkin",checkout:"tag-checkout",staying:"tag-staying"};
@@ -660,7 +971,7 @@ return `<div class="today-hotel">
 
 function renderTodaySights(list){
 if(!list||!list.length)return"";
-return list.map(s=>`<li><span class="t">${s.time}</span><span>${s.title}${s.note?` — ${s.note}`:""}</span><span class="status status-${s.status}">${s.status}</span></li>`).join("")}
+return list.map(s=>`<li><span class="t">${s.time}</span><span>${s.title}${s.note?` — ${s.note}`:""}</span><span class="status status-${s.status}">${statusLabels[s.status]||s.status}</span></li>`).join("")}
 
 function updateToday(){
 const key=todayKey(),card=document.getElementById("todayCard"),titleEl=document.getElementById("todayTitle"),
@@ -726,7 +1037,7 @@ const btn=e.target.closest("button[data-city]");
 if(!btn)return;
 const city=btn.dataset.city;
 document.querySelectorAll("#cityFilter button").forEach(b=>b.classList.toggle("active",b===btn));
-document.querySelectorAll("details[data-city]").forEach(d=>{d.style.display=(city==="all"||d.dataset.city===city)?"":"none"});
+document.querySelectorAll("[data-city]").forEach(d=>{d.style.display=(city==="all"||d.dataset.city===city)?"":"none"});
 document.querySelectorAll(".city-heading").forEach(h=>{h.style.display=(city==="all"||h.dataset.cityGroup===city)?"":"none"})});
 
 // ---- Trip Map (Leaflet + OpenStreetMap — no API key needed) ----
@@ -734,7 +1045,7 @@ const areaMeta={
 "Westminster / South Bank":{city:"london",color:"#2f6fed",lat:51.5033,lng:-0.1195},
 "Bloomsbury / Covent Garden / Soho":{city:"london",color:"#e4572e",lat:51.5120,lng:-0.1280},
 "South Kensington / Knightsbridge":{city:"london",color:"#7a2f9e",lat:51.4989,lng:-0.1700},
-"City / Southwark":{city:"london",color:"#0d8a75",lat:51.5070,lng:-0.0900},
+"City / Tower / Southwark":{city:"london",color:"#0d8a75",lat:51.5070,lng:-0.0900},
 "Camden":{city:"london",color:"#d1a327",lat:51.5405,lng:-0.1440},
 "West London / Windsor / Slough":{city:"london",color:"#c0553a",lat:51.5077,lng:-0.4200},
 "Eixample / Passeig de Gràcia":{city:"barcelona",color:"#2f6fed",lat:41.3927,lng:2.1651},
@@ -742,7 +1053,7 @@ const areaMeta={
 "Montjuïc":{city:"barcelona",color:"#7a2f9e",lat:41.3660,lng:2.1610},
 "Sagrada / Gràcia":{city:"barcelona",color:"#0d8a75",lat:41.4036,lng:2.1650},
 "Day trip":{city:"barcelona",color:"#d1a327",lat:41.5926,lng:1.8362},
-"Baixa / Chiado":{city:"lisbon",color:"#2f6fed",lat:38.7100,lng:-9.1400},
+"Baixa / Chiado / Cais do Sodré":{city:"lisbon",color:"#2f6fed",lat:38.7100,lng:-9.1400},
 "Belém":{city:"lisbon",color:"#e4572e",lat:38.6975,lng:-9.2062},
 "Alfama":{city:"lisbon",color:"#7a2f9e",lat:38.7120,lng:-9.1320},
 "Sintra":{city:"lisbon",color:"#0d8a75",lat:38.7979,lng:-9.3860}};
@@ -772,6 +1083,8 @@ const mapPointsRaw=[
 ["Bloomsbury / Covent Garden / Soho","Leicester Square","optional","https://www.google.com/maps/search/?api=1&query=Leicester+Square+London",51.5104,-0.1300],
 ["Bloomsbury / Covent Garden / Soho","Soho","optional","https://www.google.com/maps/search/?api=1&query=Soho+London",51.5136,-0.1367],
 ["Bloomsbury / Covent Garden / Soho","JELLYCAT Store, Selfridges","optional","https://www.google.com/maps/search/?api=1&query=Selfridges+London",51.5145,-0.1530],
+["Bloomsbury / Covent Garden / Soho","Seven Dials / Neal's Yard","suggested","https://www.google.com/maps/search/?api=1&query=Neal%27s+Yard+Covent+Garden+London",51.5137,-0.1265],
+["Bloomsbury / Covent Garden / Soho","West End theatrical show","advance","https://www.google.com/maps/search/?api=1&query=West+End+theatre+London",null,null],
 ["Bloomsbury / Covent Garden / Soho","Italian Bear","food","https://www.google.com/maps/search/?api=1&query=Italian+Bear+London",null,null],
 ["Bloomsbury / Covent Garden / Soho","Sticks'n'Sushi","food","https://www.google.com/maps/search/?api=1&query=Sticks+n+Sushi+Covent+Garden+London",null,null],
 ["Bloomsbury / Covent Garden / Soho","Kanada-Ya","food","https://www.google.com/maps/search/?api=1&query=Kanada-Ya+London",null,null],
@@ -784,61 +1097,82 @@ const mapPointsRaw=[
 ["South Kensington / Knightsbridge","Natural History Museum","optional","https://www.google.com/maps/search/?api=1&query=Natural+History+Museum+London",51.4967,-0.1764],
 ["South Kensington / Knightsbridge","Hyde Park","optional","https://www.google.com/maps/search/?api=1&query=Hyde+Park+London",51.5073,-0.1657],
 ["South Kensington / Knightsbridge","Harrods","optional","https://www.google.com/maps/search/?api=1&query=Harrods+London",51.4994,-0.1634],
+["South Kensington / Knightsbridge","Schiaparelli exhibition","advance","https://www.google.com/maps/search/?api=1&query=Victoria+and+Albert+Museum+London",51.4966,-0.1722],
+["South Kensington / Knightsbridge","Our Story with David Attenborough","advance","https://www.google.com/maps/search/?api=1&query=Natural+History+Museum+London",51.4967,-0.1764],
 ["South Kensington / Knightsbridge","Chet's","food","https://www.google.com/maps/search/?api=1&query=Chet%27s+Thai+London",null,null],
-["City / Southwark","Sky Garden","pending","https://www.google.com/maps/search/?api=1&query=Sky+Garden+London",51.5113,-0.0836],
-["City / Southwark","Tate Modern","optional","https://www.google.com/maps/search/?api=1&query=Tate+Modern+London",51.5076,-0.0994],
-["City / Southwark","Borough Market","optional","https://www.google.com/maps/search/?api=1&query=Borough+Market+London",51.5055,-0.0910],
-["City / Southwark","Millennium Bridge","optional","https://www.google.com/maps/search/?api=1&query=Millennium+Bridge+London",51.5095,-0.0985],
-["City / Southwark","St Paul's Cathedral (exterior)","optional","https://www.google.com/maps/search/?api=1&query=St+Paul%27s+Cathedral+London",51.5138,-0.0984],
-["City / Southwark","The View from The Shard","optional","https://www.google.com/maps/search/?api=1&query=The+View+from+The+Shard+London",51.5045,-0.0865],
-["City / Southwark","London Bridge","optional","https://www.google.com/maps/search/?api=1&query=London+Bridge",51.5079,-0.0877],
-["City / Southwark","Tower Bridge area","optional","https://www.google.com/maps/search/?api=1&query=Tower+Bridge+London",51.5055,-0.0754],
-["City / Southwark","Tower of London","optional","https://www.google.com/maps/search/?api=1&query=Tower+of+London",51.5081,-0.0759],
-["City / Southwark","Padella (Borough Market)","food","https://www.google.com/maps/search/?api=1&query=Padella+Borough+Market+London",null,null],
-["City / Southwark","Tower Bridge Collective","food","https://www.google.com/maps/search/?api=1&query=Tower+Bridge+Collective+London",null,null],
-["City / Southwark","Crisp Pizza","food","https://www.google.com/maps/search/?api=1&query=Crisp+Pizza+London",null,null],
-["City / Southwark","Abuelo","food","https://www.google.com/maps/search/?api=1&query=Abuelo+Coffee+Borough+Market+London",null,null],
-["City / Southwark","Manteca","food","https://www.google.com/maps/search/?api=1&query=Manteca+Shoreditch+London",null,null],
-["City / Southwark","Beigel Bake (further out, Shoreditch)","food","https://www.google.com/maps/search/?api=1&query=Beigel+Bake+Brick+Lane+London",51.5228,-0.0715],
+["City / Tower / Southwark","Horizon 22","freebooked","https://www.google.com/maps/search/?api=1&query=Horizon+22+Sky+Garden+Bishopsgate+London",51.5165,-0.0824],
+["City / Tower / Southwark","Leadenhall Market","suggested","https://www.google.com/maps/search/?api=1&query=Leadenhall+Market+London",51.5127,-0.0834],
+["City / Tower / Southwark","St Dunstan in the East","suggested","https://www.google.com/maps/search/?api=1&query=St+Dunstan+in+the+East+London",51.5101,-0.0798],
+["City / Tower / Southwark","Sky Garden","priority","https://www.google.com/maps/search/?api=1&query=Sky+Garden+London",51.5113,-0.0836],
+["City / Tower / Southwark","Tate Modern","optional","https://www.google.com/maps/search/?api=1&query=Tate+Modern+London",51.5076,-0.0994],
+["City / Tower / Southwark","Borough Market","optional","https://www.google.com/maps/search/?api=1&query=Borough+Market+London",51.5055,-0.0910],
+["City / Tower / Southwark","Millennium Bridge","optional","https://www.google.com/maps/search/?api=1&query=Millennium+Bridge+London",51.5095,-0.0985],
+["City / Tower / Southwark","St Paul's Cathedral (exterior)","optional","https://www.google.com/maps/search/?api=1&query=St+Paul%27s+Cathedral+London",51.5138,-0.0984],
+["City / Tower / Southwark","The View from The Shard","optional","https://www.google.com/maps/search/?api=1&query=The+View+from+The+Shard+London",51.5045,-0.0865],
+["City / Tower / Southwark","London Bridge","optional","https://www.google.com/maps/search/?api=1&query=London+Bridge",51.5079,-0.0877],
+["City / Tower / Southwark","Tower Bridge area","optional","https://www.google.com/maps/search/?api=1&query=Tower+Bridge+London",51.5055,-0.0754],
+["City / Tower / Southwark","Tower of London","optional","https://www.google.com/maps/search/?api=1&query=Tower+of+London",51.5081,-0.0759],
+["City / Tower / Southwark","Padella (Borough Market)","food","https://www.google.com/maps/search/?api=1&query=Padella+Borough+Market+London",null,null],
+["City / Tower / Southwark","Tower Bridge Collective","food","https://www.google.com/maps/search/?api=1&query=Tower+Bridge+Collective+London",null,null],
+["City / Tower / Southwark","Crisp Pizza","food","https://www.google.com/maps/search/?api=1&query=Crisp+Pizza+London",null,null],
+["City / Tower / Southwark","Abuelo","food","https://www.google.com/maps/search/?api=1&query=Abuelo+Coffee+Borough+Market+London",null,null],
+["City / Tower / Southwark","Manteca","food","https://www.google.com/maps/search/?api=1&query=Manteca+Shoreditch+London",null,null],
+["City / Tower / Southwark","Beigel Bake (further out, Shoreditch)","food","https://www.google.com/maps/search/?api=1&query=Beigel+Bake+Brick+Lane+London",51.5228,-0.0715],
 ["Camden","Mission: Breakout","optional","https://www.google.com/maps/search/?api=1&query=Mission+Breakout+Camden+London",51.5405,-0.1425],
 ["Camden","Camden Market","optional","https://www.google.com/maps/search/?api=1&query=Camden+Market+London",51.5416,-0.1462],
 ["West London / Windsor / Slough","Southall / Broadway area","confirmed","https://www.google.com/maps/search/?api=1&query=Southall+Broadway+London",51.5077,-0.3762],
 ["West London / Windsor / Slough","Baylis House, Slough","confirmed","https://www.google.com/maps/search/?api=1&query=Baylis+House+Stoke+Poges+Lane+Slough",51.5105,-0.5960],
-["West London / Windsor / Slough","Windsor Castle","optional","https://www.google.com/maps/search/?api=1&query=Windsor+Castle",51.4839,-0.6044],
+["West London / Windsor / Slough","Windsor Castle","advance","https://www.google.com/maps/search/?api=1&query=Windsor+Castle",51.4839,-0.6044],
+["West London / Windsor / Slough","Venus Garden at Windsor","optional","https://www.google.com/maps/search/?api=1&query=Windsor+Great+Park",51.4846,-0.6060],
+["West London / Windsor / Slough","Conquer the Tower (Round Tower)","optional","https://www.google.com/maps/search/?api=1&query=Round+Tower+Windsor+Castle",51.4841,-0.6047],
 ["Eixample / Passeig de Gràcia","Casa Batlló (exterior)","optional","https://www.google.com/maps/search/?api=1&query=Casa+Batllo+Barcelona",41.3917,2.1649],
 ["Eixample / Passeig de Gràcia","Casa Milà / La Pedrera (exterior)","optional","https://www.google.com/maps/search/?api=1&query=Casa+Mila+La+Pedrera+Barcelona",41.3954,2.1619],
+["Eixample / Passeig de Gràcia","Plaça de Catalunya","optional","https://www.google.com/maps/search/?api=1&query=Placa+de+Catalunya+Barcelona",41.3870,2.1701],
 ["Old City","La Boqueria","optional","https://www.google.com/maps/search/?api=1&query=La+Boqueria+Barcelona",41.3819,2.1716],
 ["Old City","La Rambla","optional","https://www.google.com/maps/search/?api=1&query=La+Rambla+Barcelona",41.3797,2.1737],
 ["Old City","Gothic Quarter","optional","https://www.google.com/maps/search/?api=1&query=Gothic+Quarter+Barcelona",41.3833,2.1765],
-["Old City","Picasso Museum","optional","https://www.google.com/maps/search/?api=1&query=Picasso+Museum+Barcelona",41.3851,2.1809],
+["Old City","Picasso Museum","advance","https://www.google.com/maps/search/?api=1&query=Picasso+Museum+Barcelona",41.3851,2.1809],
 ["Old City","El Born","optional","https://www.google.com/maps/search/?api=1&query=El+Born+Barcelona",41.3850,2.1827],
 ["Old City","Analogin Photobooth","optional","https://www.google.com/maps/search/?api=1&query=Analogin+Photobooth+Barcelona",null,null],
+["Old City","Arc de Triomf","optional","https://www.google.com/maps/search/?api=1&query=Arc+de+Triomf+Barcelona",41.3910,2.1804],
+["Old City","Parc de la Ciutadella","optional","https://www.google.com/maps/search/?api=1&query=Parc+de+la+Ciutadella+Barcelona",41.3888,2.1873],
+["Old City","Tablao Flamenco Cordobés","advance","https://www.google.com/maps/search/?api=1&query=Tablao+Flamenco+Cordobes+Barcelona",41.3797,2.1734],
 ["Old City","Brunch & Cake","food","https://www.google.com/maps/search/?api=1&query=Brunch+%26+Cake+Barcelona",null,null],
+["Old City","BoBa Zoo","food","https://www.google.com/maps/search/?api=1&query=BoBa+Zoo+Barcelona",null,null],
 ["Montjuïc","Montjuïc","optional","https://www.google.com/maps/search/?api=1&query=Montjuic+Barcelona",41.3641,2.1590],
 ["Montjuïc","Cable Car","optional","https://www.google.com/maps/search/?api=1&query=Montjuic+Cable+Car+Barcelona",41.3689,2.1683],
 ["Montjuïc","Mirador de l'Alcalde","optional","https://www.google.com/maps/search/?api=1&query=Mirador+de+l%27Alcalde+Barcelona",41.3670,2.1600],
+["Montjuïc","Olympic Ring / Estadi Olímpic","optional","https://www.google.com/maps/search/?api=1&query=Estadi+Olimpic+Lluis+Companys+Barcelona",41.3644,2.1573],
 ["Sagrada / Gràcia","Sagrada Família","confirmed","https://www.google.com/maps/search/?api=1&query=Sagrada+Familia+Barcelona",41.4036,2.1744],
-["Sagrada / Gràcia","Park Güell","planned","https://www.google.com/maps/search/?api=1&query=Park+Guell+Barcelona",41.4145,2.1527],
+["Sagrada / Gràcia","Park Güell","priority","https://www.google.com/maps/search/?api=1&query=Park+Guell+Barcelona",41.4145,2.1527],
 ["Sagrada / Gràcia","Gràcia / Plaça del Sol","optional","https://www.google.com/maps/search/?api=1&query=Placa+del+Sol+Gracia+Barcelona",41.4041,2.1569],
 ["Sagrada / Gràcia","Sercotel Rosellón rooftop","food","https://www.google.com/maps/search/?api=1&query=Sercotel+Rossellon+Rooftop+Barcelona",null,null],
 ["Day trip","Montserrat","optional","https://www.google.com/maps/search/?api=1&query=Montserrat+Barcelona",41.5926,1.8362],
-["Baixa / Chiado","Praça do Comércio","optional","https://www.google.com/maps/search/?api=1&query=Praca+do+Comercio+Lisbon",38.7078,-9.1366],
-["Baixa / Chiado","Baixa","optional","https://www.google.com/maps/search/?api=1&query=Baixa+Lisbon",38.7113,-9.1385],
-["Baixa / Chiado","Chiado","optional","https://www.google.com/maps/search/?api=1&query=Chiado+Lisbon",38.7106,-9.1424],
-["Baixa / Chiado","Carmo area","optional","https://www.google.com/maps/search/?api=1&query=Carmo+Convent+Lisbon",38.7117,-9.1401],
-["Baixa / Chiado","Time Out Market","food","https://www.google.com/maps/search/?api=1&query=Time+Out+Market+Lisbon",38.7069,-9.1456],
-["Baixa / Chiado","Bonjardim","food","https://www.google.com/maps/search/?api=1&query=Bonjardim+Lisbon",38.7157,-9.1414],
-["Belém","Jerónimos Monastery","optional","https://www.google.com/maps/search/?api=1&query=Jeronimos+Monastery+Lisbon",38.6979,-9.2062],
+["Baixa / Chiado / Cais do Sodré","Praça do Comércio","optional","https://www.google.com/maps/search/?api=1&query=Praca+do+Comercio+Lisbon",38.7078,-9.1366],
+["Baixa / Chiado / Cais do Sodré","Baixa","optional","https://www.google.com/maps/search/?api=1&query=Baixa+Lisbon",38.7113,-9.1385],
+["Baixa / Chiado / Cais do Sodré","Chiado","optional","https://www.google.com/maps/search/?api=1&query=Chiado+Lisbon",38.7106,-9.1424],
+["Baixa / Chiado / Cais do Sodré","Carmo area","optional","https://www.google.com/maps/search/?api=1&query=Carmo+Convent+Lisbon",38.7117,-9.1401],
+["Baixa / Chiado / Cais do Sodré","Pink Street","optional","https://www.google.com/maps/search/?api=1&query=Pink+Street+Lisbon",38.7069,-9.1445],
+["Baixa / Chiado / Cais do Sodré","Miradouro de Santa Catarina","optional","https://www.google.com/maps/search/?api=1&query=Miradouro+de+Santa+Catarina+Lisbon",38.7106,-9.1470],
+["Baixa / Chiado / Cais do Sodré","Elevador de Santa Justa (exterior)","optional","https://www.google.com/maps/search/?api=1&query=Elevador+de+Santa+Justa+Lisbon",38.7113,-9.1394],
+["Baixa / Chiado / Cais do Sodré","Miradouro de São Pedro de Alcântara","optional","https://www.google.com/maps/search/?api=1&query=Miradouro+de+Sao+Pedro+de+Alcantara+Lisbon",38.7150,-9.1444],
+["Baixa / Chiado / Cais do Sodré","Landeau Chocolate","mustgo","https://www.google.com/maps/search/?api=1&query=Landeau+Chocolate+Lisbon",38.7108,-9.1428],
+["Baixa / Chiado / Cais do Sodré","Time Out Market","priority","https://www.google.com/maps/search/?api=1&query=Time+Out+Market+Lisbon",38.7069,-9.1456],
+["Baixa / Chiado / Cais do Sodré","Bonjardim","food","https://www.google.com/maps/search/?api=1&query=Bonjardim+Lisbon",38.7157,-9.1414],
+["Belém","Jerónimos Monastery","advance","https://www.google.com/maps/search/?api=1&query=Jeronimos+Monastery+Lisbon",38.6979,-9.2062],
 ["Belém","Belém Tower (exterior)","optional","https://www.google.com/maps/search/?api=1&query=Belem+Tower+Lisbon",38.6916,-9.2160],
 ["Belém","Monument to the Discoveries","optional","https://www.google.com/maps/search/?api=1&query=Monument+to+the+Discoveries+Lisbon",38.6936,-9.2059],
+["Belém","MAAT (exterior)","suggested","https://www.google.com/maps/search/?api=1&query=MAAT+Lisbon",38.6949,-9.1963],
 ["Belém","Pastéis de Belém","food","https://www.google.com/maps/search/?api=1&query=Pasteis+de+Belem+Lisbon",38.6971,-9.2033],
 ["Alfama","Lisbon Cathedral / Sé","optional","https://www.google.com/maps/search/?api=1&query=Lisbon+Cathedral+Se",38.7098,-9.1332],
 ["Alfama","Miradouro de Santa Luzia","optional","https://www.google.com/maps/search/?api=1&query=Miradouro+de+Santa+Luzia+Lisbon",38.7117,-9.1315],
 ["Alfama","Castelo de São Jorge","optional","https://www.google.com/maps/search/?api=1&query=Castelo+de+Sao+Jorge+Lisbon",38.7139,-9.1335],
-["Alfama","Clube de Fado","food","https://www.google.com/maps/search/?api=1&query=Clube+de+Fado+Lisbon",38.7112,-9.1326],
-["Sintra","Pena Palace + Park","planned","https://www.google.com/maps/search/?api=1&query=Pena+Palace+Sintra",38.7876,-9.3903],
+["Alfama","Miradouro da Senhora do Monte","suggested","https://www.google.com/maps/search/?api=1&query=Miradouro+da+Senhora+do+Monte+Lisbon",38.7152,-9.1300],
+["Alfama","Clube de Fado","advance","https://www.google.com/maps/search/?api=1&query=Clube+de+Fado+Lisbon",38.7112,-9.1326],
+["Sintra","Pena Palace + Park","priority","https://www.google.com/maps/search/?api=1&query=Pena+Palace+Sintra",38.7876,-9.3903],
 ["Sintra","Sintra Historic Centre","optional","https://www.google.com/maps/search/?api=1&query=Sintra+Historic+Centre",38.7979,-9.3817],
-["Sintra","Quinta da Regaleira","optional","https://www.google.com/maps/search/?api=1&query=Quinta+da+Regaleira+Sintra",38.7963,-9.3959]
+["Sintra","Quinta da Regaleira","priority","https://www.google.com/maps/search/?api=1&query=Quinta+da+Regaleira+Sintra",38.7963,-9.3959],
+["Sintra","Sintra National Palace (exterior)","suggested","https://www.google.com/maps/search/?api=1&query=Sintra+National+Palace",38.7975,-9.3906]
 ];
 
 const mapPoints=mapPointsRaw.map(([area,name,status,mapUrl,lat,lng])=>{
@@ -846,17 +1180,17 @@ const meta=areaMeta[area];
 if(lat==null||lng==null){[lat,lng]=jitter(name,meta.lat,meta.lng)}
 return{area,name,status,mapUrl,lat,lng,city:meta.city,color:meta.color}});
 
-const statusLabels={confirmed:"Confirmed",planned:"Planned",optional:"Optional",pending:"Pending availability",food:"Food option"};
-
 // day → primary mapped area, for the "jump to today" button (mirrors the Confirmed Schedule area tags)
 const dayArea={
 "2026-08-17":"Westminster / South Bank",
 "2026-08-18":"West London / Windsor / Slough",
-"2026-08-19":"City / Southwark",
+"2026-08-19":"Bloomsbury / Covent Garden / Soho",
 "2026-08-20":"West London / Windsor / Slough",
+"2026-08-21":"City / Tower / Southwark",
 "2026-08-25":"Sagrada / Gràcia",
 "2026-08-26":"Sagrada / Gràcia",
-"2026-08-28":"Belém",
+"2026-08-27":"Baixa / Chiado / Cais do Sodré",
+"2026-08-28":"Alfama",
 "2026-08-29":"Sintra"};
 
 const hotelPoints=[
@@ -1001,6 +1335,44 @@ document.getElementById("mapNote").textContent=`Showing today's area: ${area}.`}
 
 initTripMap();
 
+// ---- Keep / Maybe / Skip decision system (persisted locally, per browser) ----
+// Locked/booked items never get controls. Everything else — Potential, Priority,
+// Advance booking, Food, ChatGPT Suggestion — does, so the trip can move from
+// "everything is on the table" to "here's what we're actually doing" over time.
+const kmsState=JSON.parse(localStorage.getItem("eu2026kms")||"{}");
+function kmsKey(area,name){return area+"|"+name}
+function saveKms(){localStorage.setItem("eu2026kms",JSON.stringify(kmsState))}
+function buildKmsHtml(key){
+const cur=kmsState[key];
+return `<div class="kms" data-key="${key}">
+<button type="button" data-k="keep" class="${cur==="keep"?"on":""}">Keep</button>
+<button type="button" data-k="maybe" class="${cur==="maybe"?"on":""}">Maybe</button>
+<button type="button" data-k="skip" class="${cur==="skip"?"on":""}">Skip</button>
+</div>`}
+function applyKmsVisual(item,key){if(item)item.classList.toggle("is-skipped",kmsState[key]==="skip")}
+function initKMS(){
+document.querySelectorAll(".area-item").forEach(item=>{
+if(item.querySelector(".status-booked,.status-freebooked,.status-confirmed,.status-scheduled"))return;
+const nameEl=item.querySelector("b");
+if(!nameEl)return;
+const name=nameEl.textContent.trim();
+const details=item.closest("details[data-city]");
+const card=item.closest(".decision-card");
+const area=details?details.querySelector("summary").textContent.trim():(card?card.dataset.area:null);
+if(!area)return;
+const key=kmsKey(area,name);
+item.insertAdjacentHTML("beforeend",buildKmsHtml(key));
+applyKmsVisual(item,key)})}
+document.addEventListener("click",e=>{
+const btn=e.target.closest(".kms button");
+if(!btn)return;
+const wrap=btn.closest(".kms"),key=wrap.dataset.key,k=btn.dataset.k;
+if(kmsState[key]===k)delete kmsState[key];else kmsState[key]=k;
+saveKms();
+wrap.querySelectorAll("button").forEach(b=>b.classList.toggle("on",kmsState[key]===b.dataset.k));
+applyKmsVisual(wrap.closest(".area-item"),key)});
+initKMS();
+
 // ---- Add to Home Screen hint (iOS Safari only, not already installed) ----
 const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone=window.matchMedia("(display-mode: standalone)").matches||navigator.standalone;
@@ -1009,6 +1381,30 @@ document.getElementById("installBanner").style.display="flex"}
 document.getElementById("installDismiss").addEventListener("click",()=>{
 document.getElementById("installBanner").style.display="none";
 localStorage.setItem("eu2026installDismissed","1")});
+
+// ---- Saved Views (bookmarkable deep links) ----
+const savedViews=[
+{i:"🧭",n:"Today at a glance",d:"Lands on the live Today card",h:"#home"},
+{i:"🗺️",n:"Trip map",d:"Every pin, hotels and airports",h:"#tripmap"},
+{i:"📍",n:"Explore by area",d:"Neighbourhood clusters and food",h:"#explore"},
+{i:"📅",n:"Day-by-day schedule",d:"Full itinerary, today auto-opens",h:"#schedule"},
+{i:"✈️",n:"Flights overview",d:"All four flights, expandable",h:"#flights"},
+{i:"🏨",n:"Hotels overview",d:"All four stays with maps",h:"#hotels"},
+{i:"🎟️",n:"Booking status",d:"What's confirmed vs pending",h:"#bookings"},
+{i:"🆘",n:"Emergency info",d:"Numbers and assistance lines",h:"#essentials"}];
+
+const base=location.origin+location.pathname;
+document.getElementById("savedViews").innerHTML=savedViews.map((v,i)=>
+`<div class="save-row"><span class="si">${v.i}</span><div class="sm"><b>${v.n}</b><span>${v.d}</span></div><button type="button" data-copy="${v.h}" data-i="${i}">Copy link</button></div>`).join("");
+
+document.getElementById("savedViews").addEventListener("click",async e=>{
+const btn=e.target.closest("button[data-copy]");
+if(!btn)return;
+const url=base+btn.dataset.copy;
+try{await navigator.clipboard.writeText(url)}
+catch(err){const ta=document.createElement("textarea");ta.value=url;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy")}catch(e2){}document.body.removeChild(ta)}
+const old=btn.textContent;btn.textContent="✓ Copied";btn.classList.add("done");
+setTimeout(()=>{btn.textContent=old;btn.classList.remove("done")},1600)});
 
 // ---- Service worker (offline + installable) ----
 if("serviceWorker" in navigator){

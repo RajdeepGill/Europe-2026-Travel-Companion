@@ -61,6 +61,8 @@ a.tile:hover{transform:translateY(-2px);box-shadow:var(--e2);border-color:var(--
 .badge{display:inline-block;border-radius:999px;padding:6px 11px;font-size:11px;font-weight:850;letter-spacing:.05em;background:var(--accent-soft);color:var(--accent)}
 .countdown{font-size:30px;font-weight:850;margin:8px 0 3px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .small{font-size:13px;line-height:1.55;color:var(--muted)}
+.small a,.inside a:not(.btn){color:var(--accent);font-weight:650;text-decoration:none}
+.small a:hover,.inside a:not(.btn):hover{text-decoration:underline}
 .quick{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.quick a{text-decoration:none;color:var(--text);padding:15px 10px;text-align:center;font-weight:750;font-size:12px;letter-spacing:-.01em}.quick span{display:block;font-size:23px;margin-bottom:7px;line-height:1}
 .weather{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .weather-card{padding:16px;position:relative;overflow:hidden}
@@ -354,25 +356,19 @@ padding-top:20px}
 <details open data-date="2026-08-16"><summary>Sun, Aug 16 • Departure</summary><div class="inside timeline"><div class="event"><div class="time">8:15 PM</div><b>AC 856 departs Toronto</b><div class="small">YYZ Terminal 1 → London Heathrow.</div></div></div></details>
 <details open data-date="2026-08-17"><summary><span class="sum-text">Mon, Aug 17 • Arrive London + London Eye</span><span class="area-day-tag">🇬🇧 Westminster / South Bank</span></summary><div class="inside timeline"><div class="event"><div class="time">8:35 AM</div><b>Land at Heathrow</b><div class="small">Immigration + bags, then transfer toward central London — timing below is estimated only, not guaranteed.</div></div><div class="event"><div class="time">3:00 PM</div><b>Hotel check-in begins</b><div class="small">Park Plaza Riverbank; luggage can be left if the room isn't ready.</div></div><div class="event"><div class="time">8:00 PM</div><b>🎡 London Eye — booked</b><div class="small">2 travellers • standard tickets.</div></div></div></details>
 <details data-date="2026-08-18"><summary><span class="sum-text">Tue, Aug 18 • Wedding-week events</span><span class="area-day-tag">🇬🇧 Southall (West London)</span></summary><div class="inside timeline"><div class="event"><div class="time">11:00 AM</div><b>Maiyaan</b><div class="small">Southall.</div></div><div class="event"><div class="time">1:00 PM</div><b>Mehndi</b></div><div class="event"><div class="time">4:00 PM</div><b>Ladies Sangeet</b></div></div></details>
-<details data-date="2026-08-19"><summary><span class="sum-text">Wed, Aug 19 • Westminster → West End, then move hotels</span><span class="area-day-tag">🇬🇧 Westminster → West End</span></summary><div class="inside timeline"><div class="event"><div class="time">Morning</div><b>Westminster → West End sightseeing</b><div class="small">Buckingham Palace exterior, St James's Park, Trafalgar Square, Covent Garden, Soho, British Museum — pick from the Explore list below.</div></div><div class="event"><div class="time">By 12:00 PM</div><b>Check out of Park Plaza</b></div><div class="event"><div class="time">~1:00–2:00 PM</div><b>Travel west to Hayes</b><div class="small">Estimated only.</div></div><div class="event"><div class="time">3:00 PM</div><b>Premier Inn check-in begins</b></div></div></details>
+<details data-date="2026-08-19"><summary><span class="sum-text">Wed, Aug 19 • Westminster → West End, then move hotels</span><span class="area-day-tag">🇬🇧 Westminster → West End</span></summary><div class="inside timeline"><div class="event"><div class="time">Morning</div><b>Free before checkout</b><div class="small">Nothing locked — browse <a href="#explore">Explore by Area</a> (Westminster / West End) and decide day-of.</div></div><div class="event"><div class="time">By 12:00 PM</div><b>Check out of Park Plaza</b></div><div class="event"><div class="time">~1:00–2:00 PM</div><b>Travel west to Hayes</b><div class="small">Estimated only.</div></div><div class="event"><div class="time">3:00 PM</div><b>Premier Inn check-in begins</b></div></div></details>
 <details data-date="2026-08-20"><summary><span class="sum-text">Thu, Aug 20 • Jaggo</span><span class="area-day-tag">🇬🇧 Slough (West London)</span></summary><div class="inside timeline"><div class="event"><div class="time">6:30 PM</div><b>Jaggo Party</b><div class="small">Baylis House, Slough.</div><p><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Baylis+House+Stoke+Poges+Lane+Slough">Open map</a></p></div></div>
-<div class="notice" style="margin:0 16px 16px">Windsor Castle makes sense as a daytime add-on since the group is already staying west — just don't let it run late into Jaggo prep.</div></details>
-<details open data-date="2026-08-21"><summary><span class="sum-text">Fri, Aug 21 • Horizon 22 + open London sightseeing</span><span class="area-day-tag">🇬🇧 City / Tower / Southwark</span></summary><div class="inside timeline"><div class="event"><div class="time">12:00 PM</div><b>🏙️ Horizon 22 — free-booked</b><div class="small">22 Bishopsgate, Level 58 • 4 adults • free.</div></div></div>
-<div class="inside small">Rest of the day not locked yet — compare against what Aug 17 and Aug 19 already covered, then pick one:<br><br>
-<b>Option A — City / Tower / Southwark:</b> Sky Garden, Tower area, Borough Market, Shard area, Leadenhall Market, St Dunstan in the East.<br>
-<b>Option B — Central / West End:</b> British Museum, Covent Garden, Soho, Trafalgar Square, National Gallery, a West End show.<br>
-<b>Option C — South Kensington:</b> V&amp;A, Natural History Museum, Harrods, Hyde Park, the Schiaparelli exhibition, Our Story with David Attenborough.</div></details>
+<div class="notice" style="margin:0 16px 16px">Daytime is open before tonight's Jaggo party — check <a href="#explore">Explore by Area</a> for ideas nearby, just don't run late into prep.</div></details>
+<details open data-date="2026-08-21"><summary><span class="sum-text">Fri, Aug 21 • Main open London sightseeing day</span><span class="area-day-tag">🇬🇧 Pick an option</span></summary>
+<div class="inside small">Nothing locked yet — the main open London sightseeing day. Browse <a href="#explore">Explore by Area</a> and decide day-of between City/Tower/Southwark, Central/West End, or South Kensington, weighed against what Aug 17 and Aug 19 already covered.</div></details>
 <details data-date="2026-08-22"><summary><span class="sum-text">Sat, Aug 22 • Anand Karaj</span><span class="area-day-tag">📍 Gravesend, Kent</span></summary><div class="inside timeline"><div class="event"><div class="time">9:00 AM</div><b>Barat</b><div class="small">Gravesend.</div></div><div class="event"><div class="time">9:30 AM</div><b>Milni</b></div><div class="event"><div class="time">10:30 AM</div><b>Anand Karaj</b></div></div></details>
 <details data-date="2026-08-23"><summary><span class="sum-text">Sun, Aug 23 • Reception</span><span class="area-day-tag">📍 Great Offley, Herts</span></summary><div class="inside timeline"><div class="event"><div class="time">4:00 PM</div><b>Reception</b><div class="small">Offley Place, Great Offley / Hitchin area.</div><p><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Offley+Place+Hitchin">Open map</a></p></div></div></details>
 <details data-date="2026-08-24"><summary>Mon, Aug 24 • London → Barcelona</summary><div class="inside timeline"><div class="event"><div class="time">By 12:00 PM</div><b>Check out of Premier Inn</b></div><div class="event"><div class="time">4:15 PM</div><b>BA 482 departs Heathrow</b></div><div class="event"><div class="time">7:35 PM</div><b>Arrive Barcelona</b></div><div class="event"><div class="time">Evening</div><b>Check-in + nearby dinner only</b><div class="small">Estimated hotel arrival ~9:15–10:00 PM — keep the evening light.</div></div></div></details>
-<details data-date="2026-08-25"><summary><span class="sum-text">Tue, Aug 25 • Sagrada Família</span><span class="area-day-tag">🇪🇸 Sagrada / Gràcia</span></summary><div class="inside timeline"><div class="event"><div class="time">9:45 AM</div><b>⛪ Sagrada Família — booked</b><div class="small">4 guests.</div></div><div class="event"><div class="time">Later</div><b>Sercotel Rosellón rooftop → Gràcia → Park Güell</b><div class="small">Flexible Gaudí / Eixample flow.</div></div></div></details>
-<details data-date="2026-08-26"><summary><span class="sum-text">Wed, Aug 26 • Barcelona sightseeing — choose one</span><span class="area-day-tag">🇪🇸 Pick an option</span></summary><div class="inside small">Still under review — two geographic options:<br><br>
-<b>Option A — Old City / Gothic / El Born:</b> La Boqueria, La Rambla, Gothic Quarter, Barcelona Cathedral exterior, Picasso Museum, El Born, Arc de Triomf, Parc de la Ciutadella.<br>
-<b>Option B — Montjuïc:</b> Montjuïc, cable car (paid), Mirador de l'Alcalde, Olympic Ring.<br><br>
-Evening idea: Tablao Flamenco Cordobés, if a cultural evening is kept.</div></details>
+<details data-date="2026-08-25"><summary><span class="sum-text">Tue, Aug 25 • Sagrada Família</span><span class="area-day-tag">🇪🇸 Sagrada / Gràcia</span></summary><div class="inside timeline"><div class="event"><div class="time">9:45 AM</div><b>⛪ Sagrada Família — booked</b><div class="small">4 guests.</div></div><div class="event"><div class="time">Later</div><b>Rest of day open</b><div class="small">Nothing else locked — check <a href="#explore">Explore by Area</a> (Sagrada / Gràcia) for what's nearby.</div></div></div></details>
+<details data-date="2026-08-26"><summary><span class="sum-text">Wed, Aug 26 • Barcelona sightseeing — choose one</span><span class="area-day-tag">🇪🇸 Pick an option</span></summary><div class="inside small">Still under review — nothing locked yet. Browse <a href="#explore">Explore by Area</a> and decide between Old City / Gothic / El Born or Montjuïc, plus whether to keep an evening cultural option.</div></details>
 <details data-date="2026-08-27"><summary><span class="sum-text">Thu, Aug 27 • Barcelona → Lisbon: Baixa/Chiado</span><span class="area-day-tag">🇵🇹 Baixa / Chiado</span></summary><div class="inside timeline"><div class="event"><div class="time">11:25 AM</div><b>TP 1031 departs Barcelona</b></div><div class="event"><div class="time">12:25 PM</div><b>Arrive Lisbon</b></div><div class="event"><div class="time">3:00 PM</div><b>Hills Hotel check-in begins</b><div class="small">Estimated hotel arrival ~1:30–2:00 PM if the room isn't ready yet — luggage storage may be needed.</div></div></div></details>
-<details data-date="2026-08-28"><summary><span class="sum-text">Fri, Aug 28 • Alfama</span><span class="area-day-tag">🇵🇹 Alfama</span></summary><div class="inside small">Sé → Miradouro de Santa Luzia → Alfama → Castelo de São Jorge → Clube de Fado in the evening if kept. Belém is not scheduled this day — see the Belém decision cluster in Explore by Area.</div></details>
-<details data-date="2026-08-29"><summary><span class="sum-text">Sat, Aug 29 • Sintra day trip</span><span class="area-day-tag">🇵🇹 Sintra</span></summary><div class="inside small">Treated as a dedicated day trip. Pena Palace + Park and Quinta da Regaleira are both high-priority potential — advance booking recommended if kept.</div></details>
+<details data-date="2026-08-28"><summary><span class="sum-text">Fri, Aug 28 • Alfama</span><span class="area-day-tag">🇵🇹 Alfama</span></summary><div class="inside small">Nothing locked yet. Browse <a href="#explore">Explore by Area</a> (Alfama) for the day's options.</div></details>
+<details data-date="2026-08-29"><summary><span class="sum-text">Sat, Aug 29 • Sintra day trip</span><span class="area-day-tag">🇵🇹 Sintra</span></summary><div class="inside small">Treated as a dedicated day trip — nothing booked yet. Browse <a href="#explore">Explore by Area</a> (Sintra) to decide and book in advance.</div></details>
 <details data-date="2026-08-30"><summary>Sun, Aug 30 • Return to Toronto</summary><div class="inside timeline"><div class="event"><div class="time">10:40 AM</div><b>TP 257 departs Lisbon</b></div><div class="event"><div class="time">2:00 PM</div><b>Arrive Toronto</b></div></div></details>
 
 <h2 class="section-title" id="baggage">🧳 Baggage</h2>
@@ -410,7 +406,7 @@ Evening idea: Tablao Flamenco Cordobés, if a cultural evening is kept.</div></d
 
 <h2 class="section-title" id="bookings">🎟️ Booking Status</h2>
 <section class="card">
-<div class="checkrow"><span>✅</span><div><b>Horizon 22</b> <span class="status status-freebooked">Free-booked</span><div class="small">Fri, Aug 21 • 12:00 PM • 4 adults • free • City/Tower/Southwark</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Horizon+22+Sky+Garden+Bishopsgate+London">Open map</a></div>
+<div class="checkrow"><span>✅</span><div><b>Horizon 22</b> <span class="status status-freebooked">Free-booked</span><div class="small">Mon, Aug 17 • ~10:30–11:00 AM • 4 adults • free • City/Tower/Southwark • ⚠️ tight connection from 8:35 AM landing</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Horizon+22+Sky+Garden+Bishopsgate+London">Open map</a></div>
 <div class="checkrow"><span>✅</span><div><b>London Eye</b> <span class="status status-booked">Booked</span><div class="small">Aug 17 • 8:00 PM • Westminster / South Bank</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=The+London+Eye+London">Open map</a></div>
 <div class="checkrow"><span>✅</span><div><b>Sagrada Família</b> <span class="status status-booked">Booked</span><div class="small">Aug 25 • 9:45 AM • Sagrada / Gràcia</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sagrada+Familia+Barcelona">Open map</a></div>
 <div class="checkrow"><span>👀</span><div><b>Sky Garden</b> <span class="status status-priority">Priority</span><div class="small">Free reservation preferred • ~£11.50 backup exists but not booked • City/Tower/Southwark</div></div><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sky+Garden+London">Open map</a></div>
@@ -549,7 +545,8 @@ Evening idea: Tablao Flamenco Cordobés, if a cultural evening is kept.</div></d
 </div></div>
 </div></details>
 <details open data-city="london"><summary>City / Tower / Southwark</summary><div class="inside"><div class="area-list">
-<div class="area-item"><b>Horizon 22</b><span class="small">Fri, Aug 21 • 12:00 PM</span><span class="status status-freebooked">Free-booked</span><span class="cost-tag">Free</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Horizon+22+Sky+Garden+Bishopsgate+London">Map</a></div>
+<div class="area-item"><b>Horizon 22</b><span class="small">Mon, Aug 17 • ~10:30–11:00 AM</span><span class="status status-freebooked">Free-booked</span><span class="cost-tag">Free</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Horizon+22+Sky+Garden+Bishopsgate+London">Map</a>
+<div class="item-warning">⚠️ Tight connection from the 8:35 AM Heathrow landing with 4 checked bags.</div></div>
 <div class="area-item"><b>Sky Garden</b><span class="small">Free reservation preferred</span><span class="status status-priority">Priority</span><span class="cost-tag">Free</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sky+Garden+London">Map</a>
 <div class="item-warning">Backup: a ~£11.50 early-morning slot exists but is NOT booked — try free tickets first.</div></div>
 <div class="area-item"><b>Tower Bridge area</b><span class="small">★ 4.8</span><span class="status status-optional">Potential</span><a class="btn secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Tower+Bridge+London">Map</a></div>
@@ -911,13 +908,13 @@ const tripDays={
  sights:[{time:"11:00 AM",title:"Maiyaan",note:"Southall",status:"scheduled"},{time:"1:00 PM",title:"Mehndi",status:"scheduled"},{time:"4:00 PM",title:"Ladies Sangeet",status:"scheduled"}]},
 "2026-08-19":{title:"Westminster → West End, then move hotels",
  hotels:[{key:"parkPlaza",action:"checkout"},{key:"premierInn",action:"checkin"}],
- sights:[{time:"Morning",title:"Westminster → West End sightseeing",note:"Buckingham Palace, St James's Park, Trafalgar Sq, Covent Garden, Soho, British Museum — then travel west to Hayes",status:"flexible"}]},
+ sights:[{time:"Morning",title:"Free before checkout",note:"Nothing locked — see Explore by Area",status:"flexible"}]},
 "2026-08-20":{title:"Jaggo",
  hotels:[{key:"premierInn",action:"staying"}],
  sights:[{time:"6:30 PM",title:"Jaggo Party",note:"Baylis House, Slough",status:"scheduled"}]},
-"2026-08-21":{title:"Horizon 22 + open London day",
+"2026-08-21":{title:"Main open London sightseeing day",
  hotels:[{key:"premierInn",action:"staying"}],
- sights:[{time:"12:00 PM",title:"🏙️ Horizon 22",note:"Free-booked • 4 adults",status:"freebooked"},{time:"Rest of day",title:"Sightseeing, shopping, food",status:"flexible"}]},
+ sights:[{time:"All day",title:"Sightseeing, shopping, food",note:"Pick one: City/Tower/Southwark, Central/West End, or South Kensington",status:"flexible"}]},
 "2026-08-22":{title:"Anand Karaj",
  hotels:[{key:"premierInn",action:"staying"}],
  sights:[{time:"9:00 AM",title:"Barat",note:"Gravesend",status:"scheduled"},{time:"9:30 AM",title:"Milni",status:"scheduled"},{time:"10:30 AM",title:"Anand Karaj",status:"scheduled"}]},
@@ -930,20 +927,20 @@ const tripDays={
  sights:[]},
 "2026-08-25":{title:"Sagrada Família",
  hotels:[{key:"rogerLluria",action:"staying"}],
- sights:[{time:"9:45 AM",title:"⛪ Sagrada Família",status:"confirmed"},{time:"Later",title:"Flexible Gaudí / Eixample sightseeing",status:"flexible"}]},
+ sights:[{time:"9:45 AM",title:"⛪ Sagrada Família",status:"confirmed"},{time:"Later",title:"Rest of day open",note:"Nothing else locked — see Explore by Area",status:"flexible"}]},
 "2026-08-26":{title:"Barcelona sightseeing",
  hotels:[{key:"rogerLluria",action:"staying"}],
- sights:[{time:"Target 9:30 AM",title:"🌿 Park Güell",note:"Planned, not yet confirmed",status:"pending"}]},
+ sights:[{time:"All day",title:"Nothing locked yet",note:"Choose Old City or Montjuïc in Explore by Area",status:"flexible"}]},
 "2026-08-27":{title:"Barcelona → Lisbon: Baixa/Chiado",
  flight:{num:"TP 1031",airline:"TAP Air Portugal",from:{code:"BCN",label:""},to:{code:"LIS",label:""},dep:"11:25 AM",arr:"12:25 PM"},
  hotels:[{key:"rogerLluria",action:"checkout"},{key:"hillsLisboa",action:"checkin"}],
- sights:[{time:"Evening",title:"Check-in + nearby dinner",note:"Landeau Chocolate and Time Out Market are close by if there's time",status:"flexible"}]},
+ sights:[{time:"Evening",title:"Check-in + nearby dinner",note:"Nothing locked — see Explore by Area",status:"flexible"}]},
 "2026-08-28":{title:"Alfama",
  hotels:[{key:"hillsLisboa",action:"staying"}],
- sights:[{time:"All day",title:"Sé → Santa Luzia → Alfama → Castelo de São Jorge",note:"Belém not scheduled this day — see the Belém decision cluster",status:"flexible"}]},
+ sights:[{time:"All day",title:"Nothing locked yet",note:"See Explore by Area (Alfama)",status:"flexible"}]},
 "2026-08-29":{title:"Sintra day trip",
  hotels:[{key:"hillsLisboa",action:"staying"}],
- sights:[{time:"All day",title:"Pena Palace + Quinta da Regaleira",note:"High-priority potential, not yet booked",status:"priority"}]},
+ sights:[{time:"All day",title:"Nothing booked yet",note:"See Explore by Area (Sintra)",status:"flexible"}]},
 "2026-08-30":{title:"Return to Toronto",
  flight:{num:"TP 257",airline:"TAP Air Portugal",from:{code:"LIS",label:""},to:{code:"YYZ",label:""},dep:"10:40 AM",arr:"2:00 PM"},
  hotels:[{key:"hillsLisboa",action:"checkout"}],
